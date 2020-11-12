@@ -1,0 +1,7 @@
+.root {
+    -fx-background-color: #505050;
+}
+.label {
+    -fx-font-size: 20;
+    -fx-progress-color: #ababab;
+}
