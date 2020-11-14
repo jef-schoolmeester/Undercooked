@@ -1,20 +1,31 @@
-package reciepe;
+package recipe;
 
 /*
- * Classe décrivant un ingrédient. 
- * Un ingrédient est constitué d'un état et d'un nom.
+ * Class Ingredients
+ * Has a String name and a State state as arguments
  * 
  * @author Pierre Abeille
  */
 
-public class Ingredients {
+public class Ingredient {
 
 	private String name;
-	private State state;
+	private StateIngredient state;
 	
-	public Ingredients(String name, State state) {
+	public Ingredient(String name, StateIngredient state) {
 		this.name = name;
 		this.state = state;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public StateIngredient getState() {
+		return state;
+	}
+
+	public void setState(StateIngredient state) {
+		this.state = state;
+	}
 }
