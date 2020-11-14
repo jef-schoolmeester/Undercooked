@@ -34,6 +34,10 @@ public abstract class Tool extends Tile {
         return currentIngredient;
     }
 
+    public Ingredient getIngredient() {
+        return this.ingredient;
+    }
+
     public abstract boolean use();
 
 }
