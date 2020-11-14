@@ -1,4 +1,4 @@
-package level.recipe;
+package src.level.recipe;
 
 /*
  * Class Ingredients
@@ -11,10 +11,12 @@ public class Ingredient {
 
 	private String name;
 	private StateIngredient state;
+	private Tool requiredTool;
 	
-	public Ingredient(String name, StateIngredient state) {
+	public Ingredient(String name, StateIngredient state, Tool rTool) {
 		this.name = name;
 		this.state = state;
+		this.requiredTool = rTool;
 	}
 
 	public String getName() {

@@ -1,4 +1,4 @@
-package level.recipe;
+package src.level.recipe;
 
 /*
  * Enum State
