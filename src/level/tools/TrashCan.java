@@ -1,6 +1,6 @@
 package level.tools;
 
-import level.reciepe.Ingredient;
+import level.recipe.Ingredient;
 
 public class TrashCan extends Tool{
     public TrashCan(int posX, int posY) {

@@ -1,6 +1,6 @@
 package level.tools;
 
-import level.reciepe.Ingredient;
+import level.recipe.Ingredient;
 
 public abstract class Tool extends Tile {
 

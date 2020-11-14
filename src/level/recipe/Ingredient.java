@@ -1,4 +1,4 @@
-package src.level.recipe;
+package level.recipe;
 
 /*
  * Class Ingredients
@@ -6,6 +6,8 @@ package src.level.recipe;
  * 
  * @author Pierre Abeille
  */
+
+import level.tools.Tool;
 
 public class Ingredient {
 
