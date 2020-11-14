@@ -7,12 +7,12 @@ package level.reciepe;
  * @author Pierre Abeille
  */
 
-public class Ingredients {
+public class Ingredient {
 
 	private String name;
 	private State state;
 	
-	public Ingredients(String name, State state) {
+	public Ingredient(String name, State state) {
 		this.name = name;
 		this.state = state;
 	}
