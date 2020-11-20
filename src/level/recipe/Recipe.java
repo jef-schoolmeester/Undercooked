@@ -50,7 +50,7 @@ public class Recipe {
 	}
 	
 	public void currentState() {
-//Methode a utiliser seulement lorsque qu'une recette estfinie (méthode a implementer), pour l'instant
+//Methode a utiliser seulement lorsque tout les ingredients sont dans la liste lors de la preparation, pour l'instant
 		
 		boolean trash = false;
 		
