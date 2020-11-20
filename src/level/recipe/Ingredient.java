@@ -2,7 +2,7 @@ package level.recipe;
 
 /*
  * Class Ingredients
- * Has a String name and a State state as arguments
+ * Has a String name and a StateIngredient state as arguments
  * 
  * @author Pierre Abeille
  */
@@ -14,11 +14,17 @@ public class Ingredient {
 	private String name;
 	private StateIngredient state;
 	private Tool requiredTool;
-	
-	public Ingredient(String name, StateIngredient state, Tool rTool) {
+
+	public Ingredient(String name, Tool requiredTool) {
+		this.name = name;
+		this.state = StateIngredient.FRESH;
+		this.requiredTool = requiredTool;
+	}
+
+	public Ingredient(String name, StateIngredient state, Tool requiredTool) {
 		this.name = name;
 		this.state = state;
-		this.requiredTool = rTool;
+		this.requiredTool = requiredTool;
 	}
 
 	public String getName() {
