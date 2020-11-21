@@ -1,10 +1,11 @@
 package level.tools;
 
 import level.recipe.Ingredient;
+import level.recipe.StateIngredient;
 
 public abstract class Tool extends Tile {
 
-    private Ingredient ingredient;
+    protected Ingredient ingredient;
 
     public Tool(int posX, int posY) {
         super(posX, posY);
@@ -38,6 +39,24 @@ public abstract class Tool extends Tile {
         return this.ingredient;
     }
 
-    public abstract boolean use();
+    public boolean isEmpty() {
+        return this.ingredient == null;
+    }
 
+    public boolean use() {
+        if (this.isEmpty()) {
+            return false;
+        } else {
+            if(this.getIngredient().getRequiredTool().getClass() != this.getClass()) {
+                if (this.getIngredient().getState() == StateIngredient.FRESH) {
+                    this.getIngredient().setState(StateIngredient.PREPARED);
+                } else {
+                    this.getIngredient().setState(StateIngredient.TRASH);
+                }
+            } else {
+                this.getIngredient().setState(StateIngredient.TRASH);
+            }
+            return true;
+        }
+    }
 }
