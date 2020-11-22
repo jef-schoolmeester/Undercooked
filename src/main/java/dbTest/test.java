@@ -26,5 +26,4 @@ public class test {
         MongoCollection<Document> collection = database.getCollection("atests");
         collection.find().forEach(printConsumer);
     }
-
 }
