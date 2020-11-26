@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 public class Recipe {
 
-	private ArrayList<Ingredient> listIngredient;
-	private StateRecipe state;
+	protected ArrayList<Ingredient> listIngredient;
+	protected StateRecipe state;
 
 
-	public Recipe() {
-		this.listIngredient = new ArrayList<Ingredient>();
+	protected Recipe() {
+		this.listIngredient = new ArrayList<>();
 		this.state = StateRecipe.RAW;
 	}
 
@@ -25,51 +25,29 @@ public class Recipe {
 		this.state = StateRecipe.RAW;
 	}
 
-	public void addIngredient(Ingredient ig) {
-		this.listIngredient.add(ig);
-	}
-
-	public void addIngredient(Ingredient ig, int i) {
-		this.listIngredient.add(i, ig);
-	}
-
-	public void removeIngredient(Ingredient ig) {
 
 // Je ne sais pas quelle méthode est la plus simple, ou bien celle qu'on devrait utiliser le plus, aussecour
 // Bien que celle qui n'est pas en commentaire me semble plus simple et le booleen peut aider a la gestion des erreurs
 
-//		int ingredientAt = 0;
-//		for(Ingredient i : this.listIngredient) {
-//			if(i==ig) {
-//				ingredientAt = this.listIngredient.indexOf(i);
-//			}
-//		}
-//		this.listIngredient.remove(ingredientAt);
+	/*public void removeIngredient(Ingredient ig) {
 
-		this.listIngredient.remove(ig);
-	}
 
-	public void currentState() {
-//Methode a utiliser seulement lorsque tout les ingredients sont dans la liste lors de la preparation, pour l'instant
-
-		boolean trash = false;
-
+		int ingredientAt = 0;
 		for(Ingredient i : this.listIngredient) {
-			if(i.getState() == StateIngredient.TRASH) {
-				trash = true;
+			if(i==ig) {
+				ingredientAt = this.listIngredient.indexOf(i);
 			}
 		}
+		this.listIngredient.remove(ingredientAt);
 
-		if(trash) {
-			this.setState(StateRecipe.TRASH);
-		}
-	}
+		this.listIngredient.remove(ig);
+	}*/
 
 	public StateRecipe getState() {
 		return this.state;
 	}
 
-	private void setState(StateRecipe state) {
+	public void setState(StateRecipe state) {
 		this.state = state;
 	}
 
