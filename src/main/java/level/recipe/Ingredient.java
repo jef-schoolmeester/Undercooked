@@ -38,4 +38,9 @@ public class Ingredient {
 	public void setState(StateIngredient state) {
 		this.state = state;
 	}
+
+
+	public boolean equals(Ingredient ingredient) {
+		return this.name.equals(ingredient.getName()) && this.state == ingredient.getState();
+	}
 }
