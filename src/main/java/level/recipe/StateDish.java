@@ -8,7 +8,7 @@ package level.recipe;
  */
 
 
-public enum StateRecipe {
+public enum StateDish {
 	RAW,
 	COOKED,
 	TRASH
