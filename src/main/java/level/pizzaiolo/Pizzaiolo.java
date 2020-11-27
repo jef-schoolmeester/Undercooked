@@ -2,7 +2,7 @@ package level.pizzaiolo;
 //package level;
 
 import level.recipe.Ingredient;
-import level.tools.Tool;
+import level.tools.IngredientTool;
 
 public class Pizzaiolo {
     private int posX;
@@ -20,7 +20,7 @@ public class Pizzaiolo {
  */
     }
 
-    public boolean useTool(Tool tool){
+    public boolean useIngredientTool(IngredientTool tool){
         if (this.hand.isHandFull() && tool.isUsable(this.posX, this.posY)){
             tool.addIngredient(this.hand.getIngredient());
             return tool.use();
@@ -30,7 +30,7 @@ public class Pizzaiolo {
 
     }
 
-    public void takeIngredientFromTool(Tool tool){
+    public void takeIngredientFromIngredientTool(IngredientTool tool){
         Ingredient newIngredient;
         if(tool.isUsable(this.posX, this.posY) && !this.hand.isHandFull()){
            newIngredient = tool.takeIngredient();
