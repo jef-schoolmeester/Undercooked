@@ -21,7 +21,7 @@ public class Pizzaiolo {
     }
 
     public boolean useIngredientTool(IngredientTool ingredientTool){
-        if (this.hand.isHandFull() && tool.isUsable(this.posX, this.posY)){
+        if (this.hand.isHandFull() && ingredientTool.isUsable(this.posX, this.posY)){
             ingredientTool.addIngredient(this.hand.getIngredient());
             return ingredientTool.use();
         }else {
