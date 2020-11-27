@@ -35,6 +35,12 @@ public class Ingredient {
 		return state;
 	}
 
+
+	public Tool getRequiredTool() {
+		return this.requiredTool;
+	}
+
+
 	public void setState(StateIngredient state) {
 		this.state = state;
 	}
