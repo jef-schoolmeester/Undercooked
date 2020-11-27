@@ -3,11 +3,11 @@ package level.tools;
 import level.recipe.Ingredient;
 import level.recipe.StateIngredient;
 
-public class Tool extends Tile {
+public class IngredientTool extends Tile implements InterfaceTool{
 
     protected Ingredient ingredient;
 
-    public Tool(int posX, int posY) {
+    public IngredientTool(int posX, int posY) {
         super(posX, posY);
         this.ingredient = null;
     }
@@ -28,9 +28,6 @@ public class Tool extends Tile {
 
     public Ingredient takeIngredient() {
         Ingredient currentIngredient = this.ingredient;
-        if (currentIngredient == null) {
-            return null;
-        }
         this.ingredient = null;
         return currentIngredient;
     }

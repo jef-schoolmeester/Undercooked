@@ -2,7 +2,7 @@ package level.tools;
 
 import level.recipe.Ingredient;
 
-public class IngredientContainer extends Tool{
+public class IngredientContainer extends IngredientTool {
 
     public IngredientContainer(int posX, int posY, Ingredient ingredient) {
         super(posX, posY);

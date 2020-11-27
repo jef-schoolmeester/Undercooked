@@ -7,21 +7,21 @@ package level.recipe;
  * @author Pierre Abeille
  */
 
-import level.tools.Tool;
+import level.tools.IngredientTool;
 
 public class Ingredient {
 
 	private String name;
 	private StateIngredient state;
-	private Tool requiredTool;
+	private IngredientTool requiredTool;
 
-	public Ingredient(String name, Tool requiredTool) {
+	public Ingredient(String name, IngredientTool requiredTool) {
 		this.name = name;
 		this.state = StateIngredient.FRESH;
 		this.requiredTool = requiredTool;
 	}
 
-	public Ingredient(String name, StateIngredient state, Tool requiredTool) {
+	public Ingredient(String name, StateIngredient state, IngredientTool requiredTool) {
 		this.name = name;
 		this.state = state;
 		this.requiredTool = requiredTool;
@@ -36,7 +36,7 @@ public class Ingredient {
 	}
 
 
-	public Tool getRequiredTool() {
+	public IngredientTool getRequiredTool() {
 		return this.requiredTool;
 	}
 
