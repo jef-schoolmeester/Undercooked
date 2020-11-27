@@ -20,20 +20,20 @@ public class Pizzaiolo {
  */
     }
 
-    public boolean useIngredientTool(IngredientTool tool){
+    public boolean useIngredientTool(IngredientTool ingredientTool){
         if (this.hand.isHandFull() && tool.isUsable(this.posX, this.posY)){
-            tool.addIngredient(this.hand.getIngredient());
-            return tool.use();
+            ingredientTool.addIngredient(this.hand.getIngredient());
+            return ingredientTool.use();
         }else {
             return false;
         }
 
     }
 
-    public void takeIngredientFromIngredientTool(IngredientTool tool){
+    public void takeIngredientFromIngredientTool(IngredientTool ingredientTool){
         Ingredient newIngredient;
-        if(tool.isUsable(this.posX, this.posY) && !this.hand.isHandFull()){
-           newIngredient = tool.takeIngredient();
+        if(ingredientTool.isUsable(this.posX, this.posY) && !this.hand.isHandFull()){
+           newIngredient = ingredientTool.takeIngredient();
            this.hand.setIngredient(newIngredient);
         }
     }
