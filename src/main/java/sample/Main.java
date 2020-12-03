@@ -11,13 +11,16 @@ import java.net.URL;
 
 public class Main extends Application {
 
+    protected Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL url = new File("src/main/java/sample/sample.fxml").toURI().toURL();
+        this.primaryStage = primaryStage;
+        URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1100, 800));
-        primaryStage.show();
+        this.primaryStage.setTitle("Undercooked");
+        this.primaryStage.setScene(new Scene(root, 1100, 800));
+        this.primaryStage.show();
     }
 
 
