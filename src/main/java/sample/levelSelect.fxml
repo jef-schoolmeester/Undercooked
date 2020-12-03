@@ -16,9 +16,9 @@
            <image>
                <Image url="@../IB/logo.png" />
            </image></ImageView>
-      <Button fx:id="goBackButton" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#changeScene" prefHeight="28.0" prefWidth="135.0" style="-fx-background-color: #737373;" text="&lt; - -" textFill="WHITE">
+      <Button fx:id="goBackButton" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#changeScene" prefHeight="44.0" prefWidth="184.0" style="-fx-background-color: #737373; -fx-padding: 0;" text="&lt; - -" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="48.0" />
          </font>
       </Button>
       <GridPane layoutX="31.0" layoutY="222.0" prefHeight="546.0" prefWidth="1039.0" style="-fx-border-color: #000000; -fx-border-width: 3;">
