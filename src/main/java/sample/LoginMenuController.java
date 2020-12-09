@@ -23,21 +23,30 @@ public class LoginMenuController implements Initializable {
     }
 
     @FXML
-    protected Button login;
+    protected Button loginSignIn;
     @FXML
-    protected Button signin;
+    protected Button changeLoginSignInButton;
     @FXML
     public Button back;
 
-    public void signin(javafx.scene.input.MouseEvent mouseEvent) {
-        login.setText("Sign in");
+    public void changeLoginSignIn(javafx.scene.input.MouseEvent mouseEvent) {
+        if (changeLoginSignInButton.getText().equals("No account ? Sign in")) {
+            loginSignIn.setText("SIGN IN");
+            changeLoginSignInButton.setText("Already signed in ? Log in");
+            System.out.println("yes");
+        } else {
+            loginSignIn.setText("LOG IN");
+            changeLoginSignInButton.setText("No account ? Sign in");
+            System.out.println("NO");
+        }
+
     }
 
     public void login(javafx.scene.input.MouseEvent mouseEvent) {
-        if(login.getText()=="Sign in"){
+        if(loginSignIn.getText().equals("Sign in")){
             //créer compte
         }
-        else if(login.getText()=="Log in"){
+        else if(loginSignIn.getText().equals("Log in")){
             //connexion
         }
     }
