@@ -14,7 +14,7 @@
                   <Font name="Verdana Bold" size="41.0" />
                </font>
             </Button>
-            <Button fx:id="languageButton" layoutX="27.0" layoutY="169.0" mnemonicParsing="false" onAction="#changeToLanguage" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Language">
+            <Button fx:id="languageButton" layoutX="27.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#changeToLanguage" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Language">
                <font>
                   <Font name="Verdana" size="24.0" />
                </font>
@@ -24,12 +24,12 @@
                   <Font name="Verdana Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="addRecipeButton" layoutX="28.0" layoutY="453.0" mnemonicParsing="false" onAction="#changeToAddRecipe" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Add Recipe">
+            <Button fx:id="addRecipeButton" layoutX="28.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#changeToAddRecipe" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Add Recipe">
                <font>
                   <Font name="Verdana" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="difficultyButton" layoutX="28.0" layoutY="595.0" mnemonicParsing="false" onAction="#changeToDifficulty" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Difficulty">
+            <Button fx:id="difficultyButton" layoutX="28.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#changeToDifficulty" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: #FFF;" text="Difficulty">
                <font>
                   <Font name="Verdana" size="24.0" />
                </font>
