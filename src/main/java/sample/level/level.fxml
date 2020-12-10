@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.level.levelController">
+   <children>
+      <Pane layoutY="50.0" prefHeight="750.0" prefWidth="350.0" style="-fx-background-color: #737373;" />
+      <Pane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #C4C4C4;" />
+      <GridPane gridLinesVisible="true" layoutX="351.0" layoutY="50.0" prefHeight="750.0" prefWidth="749.0" fx:id="gameGrid">
+      </GridPane>
+      <ImageView fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" translateX="368.0" translateY="50.0" fx:id="pizzaiolo">
+         <image>
+            <Image url="@../../../resources/testSprite.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
