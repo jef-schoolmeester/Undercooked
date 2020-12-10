@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -20,6 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(url);
         this.primaryStage.setTitle("Undercooked");
         this.primaryStage.setScene(new Scene(root, 1100, 800));
+
         this.primaryStage.show();
     }
 

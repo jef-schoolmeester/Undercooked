@@ -1,7 +1,23 @@
+@font-face {
+    font-family: Minecraft;
+    src: url('Minecraft.ttf');
+}
+
+*{
+    -fx-font-family: Minecraft;
+    -fx-font-size: 30px;
+}
+
 .button {
     -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.74), 10, 0, 0, 0);
+}
+
+#goBackButton, #goBack, #changeLoginSignInButton {
+    -fx-effect: none;
 }
 
 .button:hover {
     -fx-text-fill: #FFD84D;
+    -fx-cursor: hand;
 }
