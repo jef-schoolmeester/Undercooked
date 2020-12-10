@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +25,8 @@ public class SettingsAddLanguageController implements Initializable {
     public Button addRecipeButton;
     @FXML
     public Button difficultyButton;
+    @FXML
+    public Button goBack;
 
     public static SettingsAddLanguageController self;
 
@@ -51,6 +54,13 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    public void goBack(MouseEvent mouseEvent) throws IOException {
+        URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        goBack.getScene().setRoot(root);
     }
 
 }
