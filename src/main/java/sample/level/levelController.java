@@ -3,10 +3,13 @@ package sample.level;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+
+import java.awt.*;
 
 public class levelController {
 
@@ -18,13 +21,25 @@ public class levelController {
 
     private double clicktileX;
     private double clicktyleY;
+
     private int walking;
+    private boolean isWalking;
+
+    private float timer;
+
+    @FXML
+    private Label timerValue;
 
     public AnimationTimer animationTimer = new AnimationTimer() {
         @Override
         public void handle(long l) {
             try {
-                Thread.sleep(30);
+                Thread.sleep(25);
+                timer -= 0.025;
+                timerValue.setText(String.valueOf((int) timer));
+                System.out.println(timer);
+
+                isWalking = false;
                 if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() < clicktileX) {
                     pizzaiolo.setTranslateX(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinX() + 10);
                 }
@@ -38,17 +53,19 @@ public class levelController {
                     pizzaiolo.setTranslateY(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinY() - 10);
                 }
 
-                walking += 1;
-                if (walking > 8) {
-                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite3.png")));
+                if (isWalking) {
+                    walking += 1;
+                    if (walking > 8) {
+                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite3.png")));
+                    } else {
+                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite2.png")));
+                    }
+                    if (walking > 12) {
+                        walking = 0;
+                    }
                 } else {
-                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite2.png")));
+                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite.png")));
                 }
-                if (walking > 12) {
-                    walking = 0;
-                }
-
-
 
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -78,9 +95,10 @@ public class levelController {
             }
         }
 
-        this.clicktileX = 500;
-        this.clicktyleY = 500;
+        this.clicktileX = 726.5;
+        this.clicktyleY = 426.5;
         this.walking = 0;
+        this.timer = 180;
         animationTimer.start();
     }
 

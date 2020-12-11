@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.level.levelController">
    <children>
       <Pane layoutY="50.0" prefHeight="750.0" prefWidth="350.0" style="-fx-background-color: #737373;" />
-      <Pane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #C4C4C4;" />
+      <Pane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #C4C4C4;">
+         <children>
+            <Label layoutX="648.0" layoutY="10.0" prefHeight="30.0" prefWidth="161.0" text="Time remaining:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="timerValue" layoutX="795.0" layoutY="10.0" prefHeight="30.0" prefWidth="96.0" text="180">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <GridPane fx:id="gameGrid" layoutX="351.0" layoutY="50.0" prefHeight="750.0" prefWidth="749.0">
       </GridPane>
       <ImageView fx:id="pizzaiolo" fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" translateX="368.0" translateY="50.0">
