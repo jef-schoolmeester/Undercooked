@@ -25,6 +25,8 @@ public class SettingsSelectLanguageController implements Initializable {
     public Button addRecipeButton;
     @FXML
     public Button difficultyButton;
+    @FXML
+    public Button goBack;
 
     public static SettingsSelectLanguageController self;
 
@@ -54,5 +56,12 @@ public class SettingsSelectLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    public void goBack(MouseEvent mouseEvent) throws IOException {
+        URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        goBack.getScene().setRoot(root);
     }
 }
