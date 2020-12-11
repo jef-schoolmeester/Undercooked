@@ -40,9 +40,9 @@ public class levelController {
 
                 walking += 1;
                 if (walking > 8) {
-                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/testSprite3.png")));
+                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite3.png")));
                 } else {
-                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/testSprite2.png")));
+                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite2.png")));
                 }
                 if (walking > 12) {
                     walking = 0;
@@ -57,8 +57,8 @@ public class levelController {
     };
 
     public void initialize() {
-        int numCols = 8 ;
-        int numRows = 8 ;
+        int numCols = 9 ;
+        int numRows = 9 ;
 
         for (int i = 0 ; i < numCols ; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
