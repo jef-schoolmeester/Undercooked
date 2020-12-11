@@ -37,6 +37,10 @@ public class levelController {
                 timerValue.setText(String.valueOf(Math.round(timer * 10.0)/10.0) + "s");
                 isWalking = false;
 
+                if (Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() - clicktileX) > 15) {
+
+                }
+
 
                 if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() < clicktileX) {
                     pizzaiolo.setTranslateX(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinX() + 10);
