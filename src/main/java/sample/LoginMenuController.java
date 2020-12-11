@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -28,6 +31,10 @@ public class LoginMenuController implements Initializable {
     public Button changeLoginSignInButton;
     @FXML
     public Button goBack;
+    @FXML
+    public TextField userText;
+    @FXML
+    public PasswordField passwordText;
 
     @FXML
     public void changeLoginSignIn(MouseEvent mouseEvent) {
@@ -45,11 +52,14 @@ public class LoginMenuController implements Initializable {
 
     @FXML
     public void login(MouseEvent mouseEvent) {
-        if(loginSignIn.getText().equals("Sign in")){
+        if(loginSignIn.getText().equals("SIGN IN")){
             //créer compte
+            Main.user.addUser(userText.getText(), passwordText.getText());
         }
-        else if(loginSignIn.getText().equals("Log in")){
+        else if(loginSignIn.getText().equals("LOG IN")){
             //connexion
+            System.out.println(userText.getText());
+            System.out.println(passwordText.getText());
         }
     }
 
@@ -59,4 +69,5 @@ public class LoginMenuController implements Initializable {
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
     }
+
 }

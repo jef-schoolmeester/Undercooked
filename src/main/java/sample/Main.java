@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import user.UnconnectedUser;
+import user.User;
 
 import java.io.File;
 import java.net.URL;
@@ -13,6 +15,7 @@ import java.net.URL;
 public class Main extends Application {
 
     protected Stage primaryStage;
+    static User user = new UnconnectedUser();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
