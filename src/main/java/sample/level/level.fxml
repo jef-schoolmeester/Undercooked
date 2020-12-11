@@ -25,7 +25,7 @@
       </GridPane>
       <ImageView fx:id="pizzaiolo" fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" translateX="368.0" translateY="50.0">
          <image>
-            <Image url="@../../../resources/IB/testSprite.png" />
+            <Image url="@../../../resources/IB/player/downStand.png" />
          </image>
       </ImageView>
    </children>

@@ -9,8 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.awt.*;
-
 public class levelController {
 
     @FXML
@@ -25,7 +23,7 @@ public class levelController {
     private int walking;
     private boolean isWalking;
 
-    private float timer;
+    private double timer;
 
     @FXML
     private Label timerValue;
@@ -36,10 +34,10 @@ public class levelController {
             try {
                 Thread.sleep(25);
                 timer -= 0.025;
-                timerValue.setText(String.valueOf((int) timer));
-                System.out.println(timer);
-
+                timerValue.setText(String.valueOf(Math.round(timer * 10.0)/10.0) + "s");
                 isWalking = false;
+
+
                 if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() < clicktileX) {
                     pizzaiolo.setTranslateX(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinX() + 10);
                 }
@@ -56,15 +54,15 @@ public class levelController {
                 if (isWalking) {
                     walking += 1;
                     if (walking > 8) {
-                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite3.png")));
+                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/player/downWalk2.png")));
                     } else {
-                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite2.png")));
+                        pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/player/downWalk1.png")));
                     }
                     if (walking > 12) {
                         walking = 0;
                     }
                 } else {
-                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/testSprite.png")));
+                    pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/player/downStand.png")));
                 }
 
             } catch (Exception exception) {
