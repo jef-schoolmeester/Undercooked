@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import user.ConnectedUser;
+import user.UnconnectedUser;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -54,12 +56,13 @@ public class LoginMenuController implements Initializable {
     public void login(MouseEvent mouseEvent) {
         if(loginSignIn.getText().equals("SIGN IN")){
             //créer compte
-            Main.user.addUser(userText.getText(), passwordText.getText());
+            ((UnconnectedUser) Main.user).addUser(userText.getText(), passwordText.getText());
+            Main.user = new ConnectedUser(userText.getText());
         }
         else if(loginSignIn.getText().equals("LOG IN")){
             //connexion
-            System.out.println(userText.getText());
-            System.out.println(passwordText.getText());
+       //     ((UnconnectedUser) Main.user).connectUser(userText.getText(), passwordText.getText());
+       //     Main.user = ((UnconnectedUser) Main.user).connectUser(userText.getText(), passwordText.getText());
         }
     }
 
