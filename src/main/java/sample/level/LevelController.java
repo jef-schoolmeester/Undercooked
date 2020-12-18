@@ -50,7 +50,7 @@ public class LevelController {
                 timerValue.setText(String.valueOf(Math.round(timer * 10.0)/10.0) + "s");
 
                 isWalking = true;
-                if (Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() - clicktileX) > 15) {
+                if (Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() - clicktileX) > 10) {
                     if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() < clicktileX) {
                         pizzaiolo.setTranslateX(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinX() + 10);
                         walkingState = Walking.WALKING_RIGHT;
@@ -60,7 +60,7 @@ public class LevelController {
                         pizzaiolo.setTranslateX(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinX() - 10);
                         walkingState = Walking.WALKING_LEFT;
                     }
-                } else if(Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterY() - clicktileY) > 15) {
+                } else if(Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterY() - clicktileY) > 10) {
                     if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterY() < clicktileY) {
                         pizzaiolo.setTranslateY(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getMinY() + 10);
                         walkingState = Walking.WALKING_DOWN;
@@ -136,7 +136,11 @@ public class LevelController {
 
         for (int i = 0 ; i < numCols ; i++) {
             for (int j = 0; j < numRows; j++) {
-                addPane(i, j);
+                if (j == 0) {
+                    addVoidTile(i, j, "/IB/floor/void.png");
+                } else {
+                    addFloorTile(i, j, "/IB/floor/tileFloor.png");
+                }
             }
         }
 
@@ -147,13 +151,19 @@ public class LevelController {
         animationTimer.start();
     }
 
-    private void addPane(int colIndex, int rowIndex) {
-        Pane pane = new Pane();
-        pane.setOnMouseClicked(e -> {
+    private void addFloorTile(int colIndex, int rowIndex, String imagePath) {
+        ImageView imageView = new ImageView(imagePath);
+        imageView.setOnMouseClicked(e -> {
             mouseClicked(e);
         });
-        gameGrid.add(pane, colIndex, rowIndex);
+        gameGrid.add(imageView, colIndex, rowIndex);
     }
+
+    private void addVoidTile(int colIndex, int rowIndex, String imagePath) {
+        ImageView imageView = new ImageView(imagePath);
+        gameGrid.add(imageView, colIndex, rowIndex);
+    }
+
 
     @FXML
     private void mouseClicked(MouseEvent e) {

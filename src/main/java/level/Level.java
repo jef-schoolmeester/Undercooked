@@ -1,25 +1,26 @@
 package level;
 
+import level.pizzaiolo.Pizzaiolo;
 import level.tools.Tile;
 import level.Table;
+
+import java.util.ArrayList;
 
 public class Level {
     private int level;
     private Difficulty difficulty;
-    private Tile[][] table;
+    private ArrayList<ArrayList<Tile>> table;
+    private Pizzaiolo pizzaiolo;
 
     public Level(int level, Difficulty difficulty){
         this.level=level;
         this.difficulty=difficulty;
     }
 
-    public void displayMap(){
 
-    }
-
-    public void newGame(){
-        table = new Tile[10][10];
-        //Pizzaiolo p = new Pizzaiolo(5,5);
+    public Level(){
+        this.table = new ArrayList<>();
+        pizzaiolo = new Pizzaiolo();
     }
 
 }
