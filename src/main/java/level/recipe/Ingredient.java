@@ -13,15 +13,15 @@ public class Ingredient {
 
 	private String name;
 	private StateIngredient state;
-	private IngredientTool requiredTool;
+	private String requiredTool;
 
-	public Ingredient(String name, IngredientTool requiredTool) {
+	public Ingredient(String name, String requiredTool) {
 		this.name = name;
 		this.state = StateIngredient.FRESH;
 		this.requiredTool = requiredTool;
 	}
 
-	public Ingredient(String name, StateIngredient state, IngredientTool requiredTool) {
+	public Ingredient(String name, StateIngredient state, String requiredTool) {
 		this.name = name;
 		this.state = state;
 		this.requiredTool = requiredTool;
@@ -36,7 +36,7 @@ public class Ingredient {
 	}
 
 
-	public IngredientTool getRequiredTool() {
+	public String getRequiredTool() {
 		return this.requiredTool;
 	}
 
@@ -48,5 +48,9 @@ public class Ingredient {
 
 	public boolean equals(Ingredient ingredient) {
 		return this.name.equals(ingredient.getName()) && this.state == ingredient.getState();
+	}
+
+	public Ingredient getRawIngredient() {
+		return new Ingredient(this.getName(), this.getRequiredTool());
 	}
 }

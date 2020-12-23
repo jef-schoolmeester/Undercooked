@@ -21,5 +21,7 @@ public class Recipe {
 		return dish.getStateDish() == StateDish.COOKED && this.listIngredient.equals(dish.getListIngredient());
 	}
 
-
+	public ArrayList<Ingredient> getListIngredient() {
+		return listIngredient;
+	}
 }
