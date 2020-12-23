@@ -20,4 +20,8 @@ public class TrashCan extends IngredientTool {
     public Ingredient takeIngredient() {
         return null;
     }
+
+    public String toString() {
+        return "trashCan";
+    }
 }

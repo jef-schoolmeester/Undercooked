@@ -28,14 +28,14 @@ public class Level {
             throw new Exception("At least 1 recipe is required");
         }
         this.recipes = recipes;
-        Iterator recipeIterator = this.recipes.iterator();
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        Iterator<Recipe> recipeIterator = this.recipes.iterator();
+        ArrayList<Ingredient> ingredients = new ArrayList<>(LEVEL_SIZE);
         ArrayList<String> tools = new ArrayList<>();
 
         while(recipeIterator.hasNext()) {
-            Iterator ingredientIterator = ((Recipe) recipeIterator.next()).getListIngredient().iterator();
+            Iterator<Ingredient> ingredientIterator = (recipeIterator.next()).getListIngredient().iterator();
             while (ingredientIterator.hasNext()) {
-                Ingredient ingredient = (Ingredient) ingredientIterator.next();
+                Ingredient ingredient = ingredientIterator.next();
                 if (!ingredients.contains(ingredient.getRawIngredient())) {
                     ingredients.add(ingredient.getRawIngredient());
                     if (!tools.contains(ingredient.getRequiredTool())) {
@@ -43,6 +43,32 @@ public class Level {
                     }
                 }
             }
+        }
+        //Better version
+        /*while(recipeIterator.hasNext()) {
+            for (Ingredient ingredient : (recipeIterator.next()).getListIngredient()) {
+                if (!ingredients.contains(ingredient.getRawIngredient())) {
+                    ingredients.add(ingredient.getRawIngredient());
+                    if (!tools.contains(ingredient.getRequiredTool())) {
+                        tools.add(ingredient.getRequiredTool());
+                    }
+                }
+            }
+        }*/
+
+
+        for (int i = 0; i < LEVEL_SIZE; i++) {
+            table.add(new ArrayList<>() {
+                {
+                    for (int i = 0; i < LEVEL_SIZE; i++) {
+                        if (i == 0) {
+                            add(new VoidTile(i, i));
+                        } else {
+                            add(new Tile(i, i));
+                        }
+                    }
+                }
+            });
         }
 
 
@@ -58,9 +84,39 @@ public class Level {
             }
         }
 
+
+        table.get(1).set(0, new Oven(1,0));
+        table.get(2).set(0, new Workplan(2,0));
+        table.get(3).set(0, new Delivery(3,0));
+        table.get(4).set(0, new TrashCan(4,0));
+        table.get(5).set(0, new PizzaRoll(5,0));
+
+
+
+        Iterator<String> toolsIterator = tools.iterator();
+        int counter = 5;
+        while (toolsIterator.hasNext() && counter < 7) {
+            System.out.println(counter);
+            switch (toolsIterator.next()) {
+                case "grater" -> table.get(counter).set(0, new Grater(counter, 0));
+                case "knife" -> table.get(counter).set(0, new Knife(counter, 0));
+                case "pizzaRoll" -> table.get(counter).set(0, new PizzaRoll(counter, 0));
+                default -> table.get(counter).set(0, new VoidTile(counter, 0));
+            }
+            counter++;
+        }
+
+
         //Browse all recipes
         //For each recipe, get all ingredients
         //For each ingredient, get ingredient container + required tool
+        for (int i = 0; i < LEVEL_SIZE; i++) {
+            for (int j = 0; j < LEVEL_SIZE; j++) {
+                System.out.print(table.get(j).get(i).toString());
+                System.out.print(" | ");
+            }
+            System.out.println();
+        }
     }
 
 

@@ -34,4 +34,8 @@ public class DishTool extends Tile implements InterfaceTool{
         this.dish = null;
         return currentDish;
     }
+
+    public String toString() {
+        return "dishTool";
+    }
 }

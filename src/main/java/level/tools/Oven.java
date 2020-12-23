@@ -13,4 +13,8 @@ public class Oven extends DishTool {
         return true;
         //A FAIRE
     }
+    
+    public String toString() {
+        return "oven";
+    }
 }

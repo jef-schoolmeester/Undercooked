@@ -17,4 +17,8 @@ public class Tile {
     public int getPosY() {
         return posY;
     }
+
+    public String toString() {
+        return "tile";
+    }
 }

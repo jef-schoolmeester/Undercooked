@@ -4,4 +4,8 @@ public class Delivery extends DishTool{
     public Delivery(int posX, int posY) {
         super(posX, posY);
     }
+
+    public String toString() {
+        return "delivery";
+    }
 }

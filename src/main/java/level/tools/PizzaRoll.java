@@ -6,6 +6,6 @@ public class PizzaRoll extends IngredientTool {
     }
 
     public String toString() {
-        return "pizzaroll";
+        return "pizzaRoll";
     }
 }

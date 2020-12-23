@@ -44,7 +44,7 @@ public class IngredientTool extends Tile implements InterfaceTool{
         if (this.isEmpty()) {
             return false;
         } else {
-            if(this.getIngredient().getRequiredTool() != this.getClass().toString()) {
+            if(!this.getIngredient().getRequiredTool().equals(this.getClass().toString())) {
                 if (this.getIngredient().getState() == StateIngredient.FRESH) {
                     this.getIngredient().setState(StateIngredient.PREPARED);
                 } else {
@@ -58,6 +58,6 @@ public class IngredientTool extends Tile implements InterfaceTool{
     }
 
     public String toString() {
-        return "ingredienttool";
+        return "ingredientTool";
     }
 }
