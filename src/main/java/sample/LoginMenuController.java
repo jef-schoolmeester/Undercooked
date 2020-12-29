@@ -16,12 +16,6 @@ import java.util.ResourceBundle;
 
 public class LoginMenuController implements Initializable {
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
     @FXML
     public Button loginSignIn;
     @FXML
@@ -29,18 +23,35 @@ public class LoginMenuController implements Initializable {
     @FXML
     public Button goBack;
 
+    public static Button login_signin;
+    public static Button change_login;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        login_signin = loginSignIn;
+        change_login = changeLoginSignInButton;
+    }
+
     @FXML
     public void changeLoginSignIn(MouseEvent mouseEvent) {
-        if (changeLoginSignInButton.getText().equals("No account ? Sign in")) {
-            loginSignIn.setText("SIGN IN");
-            changeLoginSignInButton.setText("Already signed in ? Log in");
-            System.out.println("yes");
+        if (changeLoginSignInButton.getText().equals("No account ? Sign in")
+                || changeLoginSignInButton.getText().equals("Pas de compte ? S'inscrire")) {
+            if(mainMenuController.static_user.getLang()=="en_name"){
+                loginSignIn.setText("SIGN IN");
+                changeLoginSignInButton.setText("Already signed in ? Log in");
+            }else if(mainMenuController.static_user.getLang()=="fr_name"){
+                loginSignIn.setText("S'INSCRIRE");
+                changeLoginSignInButton.setText("Déjà  inscrit ? Se connecter");
+            }
         } else {
-            loginSignIn.setText("LOG IN");
-            changeLoginSignInButton.setText("No account ? Sign in");
-            System.out.println("NO");
+            if(mainMenuController.static_user.getLang()=="en_name"){
+                loginSignIn.setText("LOG IN");
+                changeLoginSignInButton.setText("No account ? Sign in");
+            }else if(mainMenuController.static_user.getLang()=="fr_name"){
+                loginSignIn.setText("SE CONNECTER");
+                changeLoginSignInButton.setText("Pas de compte ? S'inscrire");
+            }
         }
-
     }
 
     @FXML
@@ -58,5 +69,6 @@ public class LoginMenuController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 }

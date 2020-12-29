@@ -44,12 +44,12 @@
                   <Font name="Verdana Bold" size="65.0" />
                </font>
             </Label>
-            <Button layoutX="76.0" layoutY="250.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="474.0" style="-fx-background-color: #FFF;" text="Français">
+            <Button fx:id="francais" layoutX="76.0" onMouseClicked="#french" layoutY="250.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="474.0" style="-fx-background-color: #FFF;" text="Français">
                <font>
                   <Font size="51.0" />
                </font>
             </Button>
-            <Button layoutX="76.0" layoutY="442.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="474.0" style="-fx-background-color: #FFF;" text="English">
+            <Button fx:id ="english" layoutX="76.0" onMouseClicked="#english" layoutY="442.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="474.0" style="-fx-background-color: #FFF;" text="English">
                <font>
                   <Font size="51.0" />
                </font>

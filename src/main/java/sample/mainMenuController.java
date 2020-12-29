@@ -2,15 +2,18 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import user.User;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class mainMenuController {
+public class mainMenuController implements Initializable {
 
     @FXML
     public Button playButton;
@@ -19,11 +22,25 @@ public class mainMenuController {
     @FXML
     public Button logInButton;
 
+    public static Button play_button;
+    public static Button settings_button;
+    public static Button login_Button;
+    public static User static_user;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        static_user = Main.user;
+        play_button = playButton;
+        settings_button = settingsButton;
+        login_Button = logInButton;
+    }
+
     @FXML
     public void changeToPlay(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/levelSelect.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         playButton.getScene().setRoot(root);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     @FXML
@@ -31,6 +48,7 @@ public class mainMenuController {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         settingsButton.getScene().setRoot(root);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     @FXML
@@ -38,6 +56,7 @@ public class mainMenuController {
         URL url = new File("src/main/java/sample/LoginMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         logInButton.getScene().setRoot(root);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
 
