@@ -17,4 +17,8 @@ public class Oven extends DishTool {
     public String toString() {
         return "oven";
     }
+
+    public String imgPath() {
+        return "/IB/tools/oven.png";
+    }
 }

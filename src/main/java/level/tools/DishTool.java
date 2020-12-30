@@ -38,4 +38,8 @@ public class DishTool extends Tile implements InterfaceTool{
     public String toString() {
         return "dishTool";
     }
+
+    public String imgPath() {
+        return "/IB/floor/void.png";
+    }
 }

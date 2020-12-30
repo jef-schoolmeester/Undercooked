@@ -21,4 +21,8 @@ public class Tile {
     public String toString() {
         return "tile";
     }
+
+    public String imgPath() {
+        return "/IB/floor/tileFloor.png";
+    }
 }

@@ -60,4 +60,8 @@ public class IngredientTool extends Tile implements InterfaceTool{
     public String toString() {
         return "ingredientTool";
     }
+
+    public String imgPath() {
+        return "/IB/floor/void.png";
+    }
 }

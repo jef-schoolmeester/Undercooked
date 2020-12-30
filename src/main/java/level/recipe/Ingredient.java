@@ -53,4 +53,8 @@ public class Ingredient {
 	public Ingredient getRawIngredient() {
 		return new Ingredient(this.getName(), this.getRequiredTool());
 	}
+
+	public String toString() {
+		return name+ " " + state.toString() + " " + requiredTool;
+	}
 }

@@ -8,4 +8,8 @@ public class PizzaRoll extends IngredientTool {
     public String toString() {
         return "pizzaRoll";
     }
+
+    public String imgPath() {
+        return "/IB/tools/pizzaRoll.png";
+    }
 }

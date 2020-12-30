@@ -9,4 +9,8 @@ public class VoidTile extends Tile{
     public String toString() {
         return "void";
     }
+
+    public String imgPath() {
+        return "/IB/floor/void.png";
+    }
 }

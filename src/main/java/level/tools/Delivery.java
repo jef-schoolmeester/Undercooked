@@ -8,4 +8,8 @@ public class Delivery extends DishTool{
     public String toString() {
         return "delivery";
     }
+
+    public String imgPath() {
+        return "/IB/tools/delivery.png";
+    }
 }

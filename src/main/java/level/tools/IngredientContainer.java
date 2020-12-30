@@ -24,5 +24,7 @@ public class IngredientContainer extends IngredientTool {
         return ingredient.getClass() == ingredient.getClass();
     }
 
-
+    public String toString() {
+        return "ingredientContainer";
+    }
 }
