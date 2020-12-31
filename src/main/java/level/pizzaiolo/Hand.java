@@ -15,12 +15,11 @@ public class Hand {
       public boolean isHandFull() {
           return this.dish != null || this.ingredient != null;
       }
-
       public boolean isIngredient() {
           return this.ingredient != null && this.dish == null;
       }
 
-    public boolean isDish() {
+      public boolean isDish() {
         return this.dish != null && this.ingredient == null;
     }
 
@@ -29,14 +28,25 @@ public class Hand {
     }
 
     public Dish getDish() {
-        return dish;
+        return this.dish;
     }
 
-    protected void setIngredient(Ingredient ingredient) {
+    public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
     }
 
-    protected void setDish(Dish dish) {
+    public void setDish(Dish dish) {
         this.dish = dish;
     }
+
+    public String toString() {
+          if (this.ingredient != null) {
+              return this.ingredient.toString();
+          } else if (this.dish != null) {
+              return this.dish.toString();
+          } else {
+              return "The hand is empty";
+          }
+    }
+
 }
