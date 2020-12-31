@@ -8,12 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import user.ConnectedUser;
-import user.UnconnectedUser;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -56,13 +52,15 @@ public class LoginMenuController implements Initializable {
     public void login(MouseEvent mouseEvent) {
         if(loginSignIn.getText().equals("SIGN IN")){
             //créer compte
-            ((UnconnectedUser) Main.user).addUser(userText.getText(), passwordText.getText());
-            Main.user = new ConnectedUser(userText.getText());
+            Main.user.addUser(userText.getText(), passwordText.getText());
+            ConnectedUser newUser = Main.user.connectUser(userText.getText(), passwordText.getText());
+            Main.user = newUser;
+            //Main.user.connectUser(userText.getText(), passwordText.getText());
         }
         else if(loginSignIn.getText().equals("LOG IN")){
             //connexion
-       //     ((UnconnectedUser) Main.user).connectUser(userText.getText(), passwordText.getText());
-       //     Main.user = ((UnconnectedUser) Main.user).connectUser(userText.getText(), passwordText.getText());
+            Main.user = Main.user.connectUser(userText.getText(), passwordText.getText());
+            System.out.println(Main.user);
         }
     }
 
