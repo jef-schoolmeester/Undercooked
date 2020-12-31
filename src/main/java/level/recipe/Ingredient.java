@@ -14,17 +14,20 @@ public class Ingredient {
 	private String name;
 	private StateIngredient state;
 	private String requiredTool;
+	private String imagePath;
 
-	public Ingredient(String name, String requiredTool) {
+	public Ingredient(String name, String requiredTool, String imagePath) {
 		this.name = name;
 		this.state = StateIngredient.FRESH;
 		this.requiredTool = requiredTool;
+		this.imagePath = imagePath;
 	}
 
-	public Ingredient(String name, StateIngredient state, String requiredTool) {
+	public Ingredient(String name, StateIngredient state, String requiredTool, String imagePath) {
 		this.name = name;
 		this.state = state;
 		this.requiredTool = requiredTool;
+		this.imagePath = imagePath;
 	}
 
 	public String getName() {
@@ -51,7 +54,11 @@ public class Ingredient {
 	}
 
 	public Ingredient getRawIngredient() {
-		return new Ingredient(this.getName(), this.getRequiredTool());
+		return new Ingredient(this.getName(), this.getRequiredTool(), this.imagePath);
+	}
+
+	public String getImagePath() {
+		return this.imagePath;
 	}
 
 	public String toString() {
