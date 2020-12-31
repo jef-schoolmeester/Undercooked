@@ -35,11 +35,23 @@ public class DishTool extends Tile implements InterfaceTool{
         return currentDish;
     }
 
+    public int getDishSize() {
+        if (this.dish != null) {
+            return this.dish.getListIngredient().size();
+        } else {
+            return 0;
+        }
+    }
+
     public String toString() {
         return "dishTool";
     }
 
     public String imgPath() {
         return "/IB/floor/void.png";
+    }
+
+    public boolean use() {
+        return true;
     }
 }
