@@ -15,15 +15,15 @@ public class Level {
     private ArrayList<ArrayList<Tile>> table;
     private ArrayList<Recipe> recipes;
     private Pizzaiolo pizzaiolo;
-
-    private ArrayList<IngredientContainer> ingredientContainers;
+    private ArrayList<Recipe> custommers;
 
     public static int LEVEL_SIZE = 9;
 
     public Level(Difficulty difficulty, ArrayList<Recipe> recipes) throws Exception{
-        this.difficulty=difficulty;
+        this.difficulty = difficulty;
+        this.custommers = new ArrayList<>();
         this.table = new ArrayList<>();
-        pizzaiolo = new Pizzaiolo();
+        pizzaiolo = new Pizzaiolo(4,4);
         if (recipes.size() == 0) {
             throw new Exception("At least 1 recipe is required");
         }
@@ -87,9 +87,8 @@ public class Level {
 
         table.get(1).set(0, new Oven(1,0));
         table.get(2).set(0, new Workplan(2,0));
-        table.get(3).set(0, new Delivery(3,0));
-        table.get(4).set(0, new TrashCan(4,0));
-        table.get(5).set(0, new PizzaRoll(5,0));
+        table.get(3).set(0, new TrashCan(3,0));
+        table.get(4).set(0, new Delivery(4,0));
 
 
 
@@ -106,20 +105,44 @@ public class Level {
             counter++;
         }
 
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator();
+        int rowCounter = 1;
+        int colCounter = 0;
+        while (ingredientIterator.hasNext() && !(rowCounter == 1 && colCounter == 8)) {
+            table.get(colCounter).set(rowCounter, new IngredientContainer(colCounter, rowCounter, ingredientIterator.next()));
+            if (rowCounter < 7) {
+                rowCounter ++;
+            }
+        }
+    }
 
-        //Browse all recipes
-        //For each recipe, get all ingredients
-        //For each ingredient, get ingredient container + required tool
+    public void printLevel() {
         for (int i = 0; i < LEVEL_SIZE; i++) {
             for (int j = 0; j < LEVEL_SIZE; j++) {
-                System.out.print(table.get(j).get(i).toString());
-                System.out.print(" | ");
+                if (i == this.pizzaiolo.getPosY() && j == this.pizzaiolo.getPosX()) {
+                    System.out.print("pizzaiolo");
+                    System.out.print(" | ");
+                } else {
+                    System.out.print(table.get(j).get(i).toString());
+                    System.out.print(" | ");
+                }
             }
             System.out.println();
         }
     }
 
+    public void setPizzaioloPos(int x, int y) throws IndexOutOfBoundsException {
+        if (x >= LEVEL_SIZE || y >= LEVEL_SIZE) {
+            throw new IndexOutOfBoundsException("Pos out of bounds");
+        }
+        this.pizzaiolo.setPos(x, y);
+    }
 
+    public Pizzaiolo getPizzaiolo() {
+        return this.pizzaiolo;
+    }
 
-
+    public ArrayList<ArrayList<Tile>> getTable() {
+        return table;
+    }
 }
