@@ -15,7 +15,7 @@ public class Delivery extends DishTool{
 
     @Override
     public boolean isEmpty() {
-        return this.preparedDishes.isEmpty();
+        return true;
     }
 
     @Override
@@ -35,5 +35,9 @@ public class Delivery extends DishTool{
 
     public String imgPath() {
         return "/IB/tools/delivery.png";
+    }
+
+    public ArrayList<Dish> getPreparedDishes() {
+        return preparedDishes;
     }
 }
