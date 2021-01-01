@@ -10,14 +10,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import level.Level;
+import level.customer.Order;
 import level.recipe.Ingredient;
 import level.tools.DishTool;
 import level.tools.IngredientTool;
 import level.tools.Tile;
 import sample.Main;
 
-import javax.tools.Tool;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,7 +39,13 @@ public class LevelController {
     private GridPane custommerGrid;
 
     @FXML
+    private ArrayList<GridPane> customers;
+
+    @FXML
     private Label timerValue;
+
+    @FXML
+    private Label score;
 
     private double clickPosX;
     private double clickPosY;
@@ -66,7 +73,7 @@ public class LevelController {
             try {
                 Thread.sleep(25);
                 timer -= 0.025;
-                timerValue.setText(String.valueOf(Math.round(timer * 10.0)/10.0) + "s");
+                timerValue.setText((Math.round(timer * 10.0)/10.0) + "s");
 
                 isWalking = true;
                 if (Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() - clickPosX) > 10) {
@@ -96,21 +103,11 @@ public class LevelController {
                 }
 
                 switch (walkingState) {
-                    case WALKING_UP -> {
-                        walkingPath = "up";
-                    }
-                    case WALKING_DOWN -> {
-                        walkingPath = "down";
-                    }
-                    case WALKING_LEFT -> {
-                        walkingPath = "left";
-                    }
-                    case WALKING_RIGHT -> {
-                        walkingPath = "right";;
-                    }
-                    default -> {
-                        System.out.println("STAR PLATINUM");
-                    }
+                    case WALKING_UP -> walkingPath = "up";
+                    case WALKING_DOWN -> walkingPath = "down";
+                    case WALKING_LEFT -> walkingPath = "left";
+                    case WALKING_RIGHT -> walkingPath = "right";
+                    default -> System.out.println("STAR PLATINUM");
                 }
 
                 if (isWalking) {
@@ -126,12 +123,15 @@ public class LevelController {
                 } else {
                     pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/player/"+ walkingPath +"Stand.png")));
                 }
-                setInventory();
-
+                checkDelivery();
+                removeOutdatedOrders();
+                setOrders();
+                score.setText(Math.round(level.getScore()*10.0)/10.0 + " €");
                 if (timer < 0) {
                     URL url = new File("src/main/java/sample/level/endGame.fxml").toURI().toURL();
                     Parent root = FXMLLoader.load(url);
                     timerValue.getScene().setRoot(root);
+                    level.stop();
                     this.stop();
                 }
 
@@ -142,7 +142,7 @@ public class LevelController {
         }
     };
 
-    public void initialize() throws Exception {
+    public void initialize() {
         this.level = Main.level;
 
         for (int i = 0 ; i < Level.LEVEL_SIZE ; i++) {
@@ -168,6 +168,8 @@ public class LevelController {
             }
         }
 
+        this.customers = new ArrayList<>();
+
         /*for (int i = 0 ; i < numCols ; i++) {
             for (int j = 0; j < numRows; j++) {
                 if (j == 0) {
@@ -183,16 +185,15 @@ public class LevelController {
         this.clickTileX = 4;
         this.clickTileY = 4;
         this.walking = 0;
-        this.timer = 181.75;
+        //this.timer = 181.75;
+        this.timer = 25.75;
         animationTimer.start();
-        System.out.println(this.level.getPizzaiolo().getHand().getIngredient().toString());
+        //System.out.println(this.level.getPizzaiolo().getHand().getIngredient().toString());
     }
 
     private void addFloorTile(int colIndex, int rowIndex, String imagePath) {
         ImageView imageView = new ImageView(imagePath);
-        imageView.setOnMouseClicked(e -> {
-            tileClicked(e, colIndex, rowIndex);
-        });
+        imageView.setOnMouseClicked(e -> tileClicked(e, colIndex, rowIndex));
         gameGrid.add(imageView, colIndex, rowIndex);
     }
 
@@ -203,9 +204,7 @@ public class LevelController {
 
     private void addToolTile(int colIndex, int rowIndex, String imagePath) {
         ImageView imageView = new ImageView(imagePath);
-        imageView.setOnMouseClicked(e -> {
-            toolClicked(e, colIndex, rowIndex);
-        });
+        imageView.setOnMouseClicked(e -> toolClicked(e, colIndex, rowIndex));
         gameGrid.add(imageView, colIndex, rowIndex);
     }
 
@@ -218,24 +217,11 @@ public class LevelController {
                 inventoryGrid.add(imageView, 0, 0);
             } else {
                 Iterator<Ingredient> dishIterator = this.level.getPizzaiolo().getHand().getDish().getListIngredient().iterator();
-                int column = 0;
-                int row = 0;
-                while (dishIterator.hasNext()) {
-                    ImageView imageView = new ImageView(dishIterator.next().getImagePath());
-                    inventoryGrid.add(imageView, column, row);
-                    column ++;
-                    if (column == 4) {
-                        row++;
-                        column = 0;
-                    }
-                }
+                this.generateListIngredientsView(dishIterator, inventoryGrid, 82);
             }
         }
     }
 
-    private void setCustommers() {
-
-    }
 
     @FXML
     private void tileClicked(MouseEvent e, int posX, int posY) {
@@ -254,6 +240,64 @@ public class LevelController {
         } else {
             this.level.getPizzaiolo().useDishTool((DishTool) this.level.getTable().get(posX).get(posY));
             System.out.println(this.level.getPizzaiolo().getHand().toString() + " dish");
+        }
+        this.setInventory();
+    }
+
+    public void setOrders() {
+        this.custommerGrid.getChildren().clear();
+        if (this.level.getCustommers().size() != 0) {
+            GridPane customer;
+            Label waitingTime;
+            int customerIndex = 0;
+            GridPane customerOrder;
+            for (Order order: this.level.getCustommers()) {
+                customer = new GridPane();
+                waitingTime = new Label("Waiting time : " + Math.round(order.getTime() * 10.0)/10.0 + " s");
+                waitingTime.setFont(Font.font (20));
+                customer.add(waitingTime, 0, 0);
+                customerOrder = new GridPane();
+                this.generateListIngredientsView(order.getRecipe().getListIngredient().iterator(), customerOrder, 50);
+                customer.add(customerOrder, 0, 1);
+                this.custommerGrid.add(customer, 0, customerIndex);
+
+                customerIndex++;
+            }
+        } else {
+            this.custommerGrid.getChildren().clear();
+        }
+    }
+
+    private void generateListIngredientsView(Iterator<Ingredient> ingredientIterator, GridPane gridPane, int size) {
+        int column = 0;
+        int row = 0;
+        int imageNumberOnALine = 328/size;
+        while (ingredientIterator.hasNext()) {
+            ImageView imageView = new ImageView(ingredientIterator.next().getImagePath());
+            imageView.setFitHeight(size);
+            imageView.setFitWidth(size);
+            gridPane.add(imageView, column, row);
+            column ++;
+            if (column == imageNumberOnALine) {
+                row++;
+                column = 0;
+            }
+        }
+    }
+
+    private void removeOutdatedOrders() {
+        this.level.getCustommers().removeIf(order -> order.getTime() <= 0);
+    }
+
+    private void checkDelivery() {
+        for (int dishIndex = 0; dishIndex < this.level.getDelivery().getPreparedDishes().size(); dishIndex++) {
+            for (int orderIndex = 0; orderIndex < this.level.getCustommers().size(); orderIndex++) {
+                if (this.level.getCustommers().get(orderIndex).getRecipe().isDishMatching(this.level.getDelivery().getPreparedDishes().get(dishIndex))) {
+                    this.level.addScore(this.level.getCustommers().get(orderIndex).getPrice());
+                    this.level.getCustommers().remove(orderIndex);
+                    this.level.getDelivery().getPreparedDishes().remove(this.level.getDelivery().getPreparedDishes().get(dishIndex));
+                }
+            }
         }
     }
 }
