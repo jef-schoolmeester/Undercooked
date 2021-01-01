@@ -6,25 +6,26 @@ public class OvenThread extends Thread {
 
     private Oven oven;
     private double timer;
+    private boolean isCooking;
     private boolean isRunning;
 
     public OvenThread(Oven oven) {
         super();
         this.oven = oven;
         this.timer = 0;
-        this.isRunning = false;
+        this.isCooking = false;
+        this.isRunning = true;
     }
 
     public void run() {
-        while (true) {
+        while (isRunning) {
             try {
                 sleep(100);
-                if (isRunning) {
-                    System.out.println(timer);
-                    this.timer += 100;
-                    System.out.println("timer");
-                    if (timer%5000 == 0) {
-                        oven.burn();
+                if (isCooking) {
+                    this.timer += 0.1;
+                    this.timer = Math.round(this.timer * 10.0)/10.0;
+                    if (timer%5 == 0) {
+                        oven.cook();
                     }
                 } else {
                     this.timer = 0;
@@ -36,6 +37,10 @@ public class OvenThread extends Thread {
     }
 
     public void toggle() {
-        this.isRunning = !this.isRunning;
+        this.isCooking = !this.isCooking;
+    }
+
+    public void stopRunning() {
+        this.isRunning = false;
     }
 }
