@@ -49,8 +49,13 @@ public class Ingredient {
 	}
 
 
-	public boolean equals(Ingredient ingredient) {
-		return this.name.equals(ingredient.getName()) && this.state == ingredient.getState();
+	@Override
+	public boolean equals(Object object) {
+		if (object.getClass() == Ingredient.class) {
+			return this.name.equals(((Ingredient) object).getName()) && this.state == ((Ingredient) object).getState();
+		} else {
+			return false;
+		}
 	}
 
 	public Ingredient getRawIngredient() {
