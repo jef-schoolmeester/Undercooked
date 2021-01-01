@@ -24,4 +24,12 @@ public class Recipe {
 	public ArrayList<Ingredient> getListIngredient() {
 		return listIngredient;
 	}
+
+	public String toString() {
+		String value = "";
+		for (Ingredient i: listIngredient) {
+			value += i.toString() + " ";
+		}
+		return value;
+	}
 }

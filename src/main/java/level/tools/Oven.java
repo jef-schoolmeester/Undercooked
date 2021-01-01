@@ -9,7 +9,7 @@ public class Oven extends DishTool {
 
     private OvenThread ovenThread;
 
-    public Oven(int posX, int posY) throws InterruptedException {
+    public Oven(int posX, int posY) {
         super(posX, posY);
         this.ovenThread = new OvenThread(this);
         this.ovenThread.start();
@@ -24,10 +24,11 @@ public class Oven extends DishTool {
     }
 
     //Function name
-    public void burn() {
-        switch (this.dish.getStateDish()) {
-            case RAW -> this.dish.setStateDish(StateDish.COOKED);
-            default -> this.dish.setStateDish(StateDish.TRASH);
+    public void cook() {
+        if (this.dish.getStateDish() == StateDish.RAW) {
+            this.dish.setStateDish(StateDish.COOKED);
+        } else {
+            this.dish.setStateDish(StateDish.TRASH);
         }
     }
 
@@ -45,5 +46,9 @@ public class Oven extends DishTool {
     @Override
     public String imgPath() {
         return "/IB/tools/oven.png";
+    }
+
+    public void stopThread() {
+        this.ovenThread.stopRunning();
     }
 }
