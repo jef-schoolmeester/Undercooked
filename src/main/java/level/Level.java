@@ -1,12 +1,13 @@
 package level;
 
+import level.customer.Order;
 import level.pizzaiolo.Pizzaiolo;
 import level.recipe.Ingredient;
 import level.recipe.Recipe;
+import level.threads.CustommerThread;
 import level.tools.*;
 
 
-import javax.tools.Tool;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -15,14 +16,17 @@ public class Level {
     private ArrayList<ArrayList<Tile>> table;
     private ArrayList<Recipe> recipes;
     private Pizzaiolo pizzaiolo;
-    private ArrayList<Recipe> custommers;
+    private ArrayList<Order> customers;
+    private CustommerThread custommerThread;
+    private double score;
 
     public static int LEVEL_SIZE = 9;
 
     public Level(Difficulty difficulty, ArrayList<Recipe> recipes) throws Exception{
         this.difficulty = difficulty;
-        this.custommers = new ArrayList<>();
+        this.customers = new ArrayList<>();
         this.table = new ArrayList<>();
+        this.score = 0;
         pizzaiolo = new Pizzaiolo(4,4);
         if (recipes.size() == 0) {
             throw new Exception("At least 1 recipe is required");
@@ -33,28 +37,16 @@ public class Level {
         ArrayList<String> tools = new ArrayList<>();
 
         while(recipeIterator.hasNext()) {
-            Iterator<Ingredient> ingredientIterator = (recipeIterator.next()).getListIngredient().iterator();
-            while (ingredientIterator.hasNext()) {
-                Ingredient ingredient = ingredientIterator.next();
+            for (Ingredient ingredient : (recipeIterator.next()).getListIngredient()) {
                 if (!ingredients.contains(ingredient.getRawIngredient())) {
                     ingredients.add(ingredient.getRawIngredient());
+                    System.out.println(ingredient.getRawIngredient().toString());
                     if (!tools.contains(ingredient.getRequiredTool())) {
                         tools.add(ingredient.getRequiredTool());
                     }
                 }
             }
         }
-        //Better version
-        /*while(recipeIterator.hasNext()) {
-            for (Ingredient ingredient : (recipeIterator.next()).getListIngredient()) {
-                if (!ingredients.contains(ingredient.getRawIngredient())) {
-                    ingredients.add(ingredient.getRawIngredient());
-                    if (!tools.contains(ingredient.getRequiredTool())) {
-                        tools.add(ingredient.getRequiredTool());
-                    }
-                }
-            }
-        }*/
 
 
         for (int i = 0; i < LEVEL_SIZE; i++) {
@@ -110,10 +102,20 @@ public class Level {
         int colCounter = 0;
         while (ingredientIterator.hasNext() && !(rowCounter == 1 && colCounter == 8)) {
             table.get(colCounter).set(rowCounter, new IngredientContainer(colCounter, rowCounter, ingredientIterator.next()));
-            if (rowCounter < 7) {
+            if (rowCounter < 7 && colCounter == 0) {
                 rowCounter ++;
+            } else {
+                if (colCounter < 7) {
+                    rowCounter = 8;
+                    colCounter++;
+                } else {
+                    colCounter = 8;
+                    rowCounter--;
+                }
             }
         }
+        this.custommerThread = new CustommerThread(this);
+        this.custommerThread.start();
     }
 
     public void printLevel() {
@@ -131,6 +133,12 @@ public class Level {
         }
     }
 
+    public void printCustomers() {
+        for (Order order: this.customers) {
+            System.out.println(order.getRecipe().toString());
+        }
+    }
+
     public void setPizzaioloPos(int x, int y) throws IndexOutOfBoundsException {
         if (x >= LEVEL_SIZE || y >= LEVEL_SIZE) {
             throw new IndexOutOfBoundsException("Pos out of bounds");
@@ -144,5 +152,34 @@ public class Level {
 
     public ArrayList<ArrayList<Tile>> getTable() {
         return table;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public ArrayList<Order> getCustommers() {
+        return customers;
+    }
+
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public double getScore() {
+        return this.score;
+    }
+
+    public void addScore(double score) {
+        this.score+= score;
+    }
+
+    public Delivery getDelivery() {
+        return (Delivery) this.table.get(4).get(0);
+    }
+
+    public void stop() {
+        this.custommerThread.stopRunning();
+        ((Oven) this.table.get(1).get(0)).stopThread();
     }
 }
