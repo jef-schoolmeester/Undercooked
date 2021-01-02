@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Controller of the view mainMenu.fxml
+ *
+ * @author Jef
+ * @author Pierre
+ * @since 2.0
+ * @version 2.0
+ */
 public class mainMenuController {
 
     @FXML
@@ -24,6 +33,14 @@ public class mainMenuController {
     @FXML
     public Label usernameLabel;
 
+    /**
+     * Allow to change to level select menu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     *
+     * @author Jef
+     */
     @FXML
     public void changeToPlay(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/levelSelect.fxml").toURI().toURL();
@@ -31,6 +48,14 @@ public class mainMenuController {
         playButton.getScene().setRoot(root);
     }
 
+    /**
+     * Allow to change to settings menu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     *
+     * @author Jef
+     */
     @FXML
     public void changeToSettings(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
@@ -38,6 +63,14 @@ public class mainMenuController {
         settingsButton.getScene().setRoot(root);
     }
 
+    /**
+     * Allow to change to Log in menu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     *
+     * @author Jef
+     */
     @FXML
     public void changeToLog(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/LoginMenu.fxml").toURI().toURL();
@@ -45,6 +78,11 @@ public class mainMenuController {
         logInButton.getScene().setRoot(root);
     }
 
+    /**
+     * Method to display user name on screen, and change color if user access is admin
+     *
+     * @author Pierre
+     */
     @FXML
     public void initialize(){
         usernameLabel.setText(Main.user.getUserName());

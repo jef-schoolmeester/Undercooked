@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the view settingsDifficulty.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class SettingsDifficultyController implements Initializable {
 
     @FXML
@@ -29,11 +35,24 @@ public class SettingsDifficultyController implements Initializable {
     public Button goBack;
 
     public static SettingsDifficultyController self;
+
+    /**
+     * @see Initializable
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         self = this;
     }
 
+    /**
+     * @see SettingsAddLanguageController#changeToLanguage(MouseEvent) 
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToLanguage(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
@@ -41,6 +60,12 @@ public class SettingsDifficultyController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * @see SettingsSelectLanguageController#changeToAddLanguage(MouseEvent) 
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddLanguage(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddLanguage.fxml").toURI().toURL();
@@ -48,6 +73,12 @@ public class SettingsDifficultyController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * @see SettingsSelectLanguageController#changeToAddRecipe(MouseEvent) 
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddRecipe(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
@@ -55,6 +86,12 @@ public class SettingsDifficultyController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * @see LoginMenuController#goBack(MouseEvent) 
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();

@@ -11,12 +11,24 @@ import user.User;
 import java.io.File;
 import java.net.URL;
 
+/**
+ * Main class to launch the game
+ *
+ * @author Jef
+ * @version 2.0
+ */
 public class Main extends Application {
 
     protected Stage primaryStage;
     public static Level level;
     static User user;
 
+    /**
+     * Main method that launch the game
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         user = new User();
@@ -28,6 +40,10 @@ public class Main extends Application {
         this.primaryStage.show();
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -17,6 +17,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Controller of the view levelSelect.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class levelSelectController {
 
     @FXML
@@ -25,7 +31,16 @@ public class levelSelectController {
     @FXML
     private GridPane levelGrid;
 
-    public void changeScene(MouseEvent mouseEvent) throws IOException {
+    /**
+     * Allow to go back at the main menu.
+     * Used on other controllers
+     * @see LoginMenuController
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
+    @FXML
+    public void goBack(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBackButton.getScene().setRoot(root);
