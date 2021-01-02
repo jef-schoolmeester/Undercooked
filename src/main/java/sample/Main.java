@@ -17,6 +17,11 @@ public class Main extends Application {
     public static Level level;
     static User user = new User();
 
+    /**
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
@@ -28,6 +33,10 @@ public class Main extends Application {
         this.primaryStage.show();
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }

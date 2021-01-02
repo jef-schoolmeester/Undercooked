@@ -30,11 +30,21 @@ public class SettingsAddLanguageController implements Initializable {
 
     public static SettingsAddLanguageController self;
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         self = this;
     }
 
+    /**
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToLanguage(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
@@ -42,6 +52,11 @@ public class SettingsAddLanguageController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddRecipe(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
@@ -49,6 +64,11 @@ public class SettingsAddLanguageController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToDifficulty(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
@@ -56,6 +76,11 @@ public class SettingsAddLanguageController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
