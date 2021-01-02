@@ -29,7 +29,7 @@ public class IngredientTool extends Tile implements InterfaceTool{
     public Ingredient takeIngredient() {
         Ingredient currentIngredient = this.ingredient;
         this.ingredient = null;
-        return new Ingredient(currentIngredient.getName(), currentIngredient.getState(), currentIngredient.getRequiredTool(), currentIngredient.getImagePath());
+        return new Ingredient(currentIngredient.getName(), currentIngredient.getState(), currentIngredient.getRequiredTool());
     }
 
     public Ingredient getIngredient() {
@@ -61,7 +61,7 @@ public class IngredientTool extends Tile implements InterfaceTool{
         return "ingredientTool";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/floor/void.png";
     }
 }

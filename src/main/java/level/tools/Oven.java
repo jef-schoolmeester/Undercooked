@@ -44,7 +44,7 @@ public class Oven extends DishTool {
     }
 
     @Override
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/tools/oven.png";
     }
 

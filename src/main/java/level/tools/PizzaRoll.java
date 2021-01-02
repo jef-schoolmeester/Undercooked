@@ -9,7 +9,7 @@ public class PizzaRoll extends IngredientTool {
         return "pizzaRoll";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/tools/pizzaRoll.png";
     }
 }
