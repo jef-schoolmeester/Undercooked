@@ -7,6 +7,9 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
@@ -84,13 +87,27 @@ public class User {
     }
 
     //Test d'une méthode plus ciblé vers Recipe
-    public String findRecipe(String recipeName, String listOfIngredientsName){
+    public void findRecipes() {
         MongoCollection<Document> collection = database.getCollection("Recipes");
+        ArrayList<String> documentList = new ArrayList<>();
+        FindIterable<Document> iterDoc = collection.find();
+        Iterator iterator = iterDoc.iterator();
+        while (iterator.hasNext()) {
+            mongoRecipeToList(iterator.next().toString());
+        }
+
+        /*MongoCollection<Document> collection = database.getCollection("Recipes");
         MongoCursor<Document> cursor = collection.find(eq("name", recipeName)).iterator();
         while (cursor.hasNext()){
             return cursor.next().getString(listOfIngredientsName);
         }
-        return "null";
+        return "null";*/
+    }
+
+    public void mongoRecipeToList(String mongoObject) {
+        mongoObject = mongoObject.substring(mongoObject.indexOf("name"));
+        mongoObject = mongoObject.replaceAll("]}}", "");
+        System.out.println(mongoObject);
     }
 
     public String getUserName() {
