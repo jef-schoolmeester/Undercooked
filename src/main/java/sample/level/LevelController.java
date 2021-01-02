@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import level.Level;
 import level.customer.Order;
 import level.recipe.Ingredient;
+import level.recipe.StateDish;
 import level.tools.DishTool;
 import level.tools.IngredientTool;
 import level.tools.Tile;
@@ -127,6 +128,18 @@ public class LevelController {
                 removeOutdatedOrders();
                 setOrders();
                 score.setText(Math.round(level.getScore()*10.0)/10.0 + " €");
+
+                /*if (level.getPizzaiolo().getHand().isDish()) {
+                    if (level.getPizzaiolo().getHand().getDish().getStateDish() == StateDish.COOKED) {
+                        inventoryGrid.setStyle("-fx-border-color: green");
+                    } else if (level.getPizzaiolo().getHand().getDish().getStateDish() == StateDish.TRASH) {
+                        inventoryGrid.setStyle("-fx-border-color: purple");
+                    } else {
+                        inventoryGrid.setStyle("-fx-border-color: white");
+                    }
+                } else {
+                    inventoryGrid.setStyle("-fx-border-color: white");
+                }*/
                 if (timer < 0) {
                     URL url = new File("src/main/java/sample/level/endGame.fxml").toURI().toURL();
                     Parent root = FXMLLoader.load(url);
@@ -170,16 +183,6 @@ public class LevelController {
 
         this.customers = new ArrayList<>();
 
-        /*for (int i = 0 ; i < numCols ; i++) {
-            for (int j = 0; j < numRows; j++) {
-                if (j == 0) {
-                    addVoidTile(i, j, "/IB/floor/void.png");
-                } else {
-                    addFloorTile(i, j, "/IB/floor/tileFloor.png");
-                }
-            }
-        }*/
-
         this.clickPosX = 726.5;
         this.clickPosY = 426.5;
         this.clickTileX = 4;
@@ -187,7 +190,6 @@ public class LevelController {
         this.walking = 0;
         this.timer = 181.75;
         animationTimer.start();
-        //System.out.println(this.level.getPizzaiolo().getHand().getIngredient().toString());
     }
 
     private void addFloorTile(int colIndex, int rowIndex, String imagePath) {
@@ -284,17 +286,33 @@ public class LevelController {
         }
     }
 
+
     private void removeOutdatedOrders() {
-        this.level.getCustommers().removeIf(order -> order.getTime() <= 0);
+        for (int orderIndex = 0; orderIndex < level.getCustommers().size(); orderIndex++ ) {
+            if (this.level.getCustommers().size() > orderIndex) {
+                if (this.level.getCustommers().get(orderIndex).getTime() <= 0) {
+                    this.level.getCustommers().remove(orderIndex);
+                    switch (this.level.getDifficulty()) {
+                        case NORMAL -> this.level.addScore(-7);
+                        case HARD -> this.level.addScore(-9);
+                        case VERY_HARD -> this.level.addScore(-13);
+                        case INSANE -> this.level.addScore(-15);
+                        default -> this.level.addScore(-5);
+                    }
+                }
+            }
+        }
     }
 
     private void checkDelivery() {
         for (int dishIndex = 0; dishIndex < this.level.getDelivery().getPreparedDishes().size(); dishIndex++) {
             for (int orderIndex = 0; orderIndex < this.level.getCustommers().size(); orderIndex++) {
-                if (this.level.getCustommers().get(orderIndex).getRecipe().isDishMatching(this.level.getDelivery().getPreparedDishes().get(dishIndex))) {
-                    this.level.addScore(this.level.getCustommers().get(orderIndex).getPrice());
-                    this.level.getCustommers().remove(orderIndex);
-                    this.level.getDelivery().getPreparedDishes().remove(this.level.getDelivery().getPreparedDishes().get(dishIndex));
+                if (this.level.getCustommers().size() > orderIndex) {
+                    if (this.level.getCustommers().get(orderIndex).getRecipe().isDishMatching(this.level.getDelivery().getPreparedDishes().get(dishIndex))) {
+                        this.level.addScore(this.level.getCustommers().get(orderIndex).getPrice());
+                        this.level.getCustommers().remove(orderIndex);
+                        this.level.getDelivery().getPreparedDishes().remove(this.level.getDelivery().getPreparedDishes().get(dishIndex));
+                    }
                 }
             }
         }

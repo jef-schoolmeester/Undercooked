@@ -41,8 +41,9 @@ public class Level {
                 if (!ingredients.contains(ingredient.getRawIngredient())) {
                     ingredients.add(ingredient.getRawIngredient());
                     System.out.println(ingredient.getRawIngredient().toString());
-                    if (!tools.contains(ingredient.getRequiredTool())) {
+                    if (!tools.contains(ingredient.getRequiredTool()) && !ingredient.getRequiredTool().equals("none")) {
                         tools.add(ingredient.getRequiredTool());
+                        System.out.println(ingredient.getRequiredTool());
                     }
                 }
             }
@@ -86,7 +87,7 @@ public class Level {
 
         Iterator<String> toolsIterator = tools.iterator();
         int counter = 5;
-        while (toolsIterator.hasNext() && counter < 7) {
+        while (toolsIterator.hasNext() && counter <= 7) {
             System.out.println(counter);
             switch (toolsIterator.next()) {
                 case "grater" -> table.get(counter).set(0, new Grater(counter, 0));
