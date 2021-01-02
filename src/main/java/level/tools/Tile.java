@@ -22,7 +22,7 @@ public class Tile {
         return "tile";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/floor/tileFloor.png";
     }
 }

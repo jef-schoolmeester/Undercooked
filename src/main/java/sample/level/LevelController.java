@@ -161,9 +161,9 @@ public class LevelController {
         for (int i = 0; i < Level.LEVEL_SIZE; i++) {
             for (int j = 0; j < Level.LEVEL_SIZE; j++) {
                 switch (table.get(i).get(j).toString()) {
-                    case "void" -> addVoidTile(i, j, table.get(i).get(j).imgPath());
-                    case "tile" -> addFloorTile(i, j, table.get(i).get(j).imgPath());
-                    default -> addToolTile(i, j, table.get(i).get(j).imgPath());
+                    case "void" -> addVoidTile(i, j, table.get(i).get(j).getImagePath());
+                    case "tile" -> addFloorTile(i, j, table.get(i).get(j).getImagePath());
+                    default -> addToolTile(i, j, table.get(i).get(j).getImagePath());
                 }
             }
         }

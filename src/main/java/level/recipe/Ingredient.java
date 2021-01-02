@@ -14,20 +14,17 @@ public class Ingredient {
 	private String name;
 	private StateIngredient state;
 	private String requiredTool;
-	private String imagePath;
 
-	public Ingredient(String name, String requiredTool, String imagePath) {
+	public Ingredient(String name, String requiredTool) {
 		this.name = name;
 		this.state = StateIngredient.FRESH;
 		this.requiredTool = requiredTool;
-		this.imagePath = imagePath;
 	}
 
-	public Ingredient(String name, StateIngredient state, String requiredTool, String imagePath) {
+	public Ingredient(String name, StateIngredient state, String requiredTool) {
 		this.name = name;
 		this.state = state;
 		this.requiredTool = requiredTool;
-		this.imagePath = imagePath;
 	}
 
 	public String getName() {
@@ -59,11 +56,21 @@ public class Ingredient {
 	}
 
 	public Ingredient getRawIngredient() {
-		return new Ingredient(this.getName(), this.getRequiredTool(), this.imagePath);
+		return new Ingredient(this.getName(), this.getRequiredTool());
 	}
 
 	public String getImagePath() {
-		return this.imagePath;
+		switch (this.state) {
+			case FRESH -> {
+				return "/IB/ingredients/" + this.name + ".png";
+			}
+			case PREPARED -> {
+				return "/IB/ingredients/" + this.name + "Prepared.png";
+			}
+			default -> {
+				return "/IB/ingredients/trash.png";
+			}
+		}
 	}
 
 	public String toString() {

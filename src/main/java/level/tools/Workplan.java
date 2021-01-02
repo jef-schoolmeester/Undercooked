@@ -22,7 +22,7 @@ public class Workplan extends DishTool {
         return "workplan";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/tools/workplan.png";
     }
 }
