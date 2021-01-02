@@ -12,21 +12,39 @@ import level.recipe.Recipe;
 public class Order {
 
     private Recipe recipe;
-    private int time;
-    private double price;
+    private double time;
     private CustomerState patience;
 
-    public Order(Recipe recipe, int time, double price, CustomerState patience){
+    public Order(Recipe recipe, double time, CustomerState patience){
         this.recipe=recipe;
         this.time=time;
-        this.price=price;
         this.patience=patience;
     }
 
-    public void leave(){
-        if (time==0){
-            //Partir
-        }
+    public void setTime(double time) {
+        this.time = time;
     }
 
+    public double getTime() {
+        return time;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public double getPrice() {
+        switch (this.patience) {
+            case NORMAL -> {
+                return (recipe.getListIngredient().size()*5 + time/2.5);
+            }
+            case IMPATIENT -> {
+                return (recipe.getListIngredient().size()*5 + time/3);
+            }
+            default -> {
+                return (recipe.getListIngredient().size()*5 + time/2);
+            }
+        }
+
+    }
 }

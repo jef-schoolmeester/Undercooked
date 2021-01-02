@@ -29,7 +29,7 @@ public class IngredientTool extends Tile implements InterfaceTool{
     public Ingredient takeIngredient() {
         Ingredient currentIngredient = this.ingredient;
         this.ingredient = null;
-        return currentIngredient;
+        return new Ingredient(currentIngredient.getName(), currentIngredient.getState(), currentIngredient.getRequiredTool(), currentIngredient.getImagePath());
     }
 
     public Ingredient getIngredient() {
@@ -44,7 +44,7 @@ public class IngredientTool extends Tile implements InterfaceTool{
         if (this.isEmpty()) {
             return false;
         } else {
-            if(this.getIngredient().getRequiredTool().getClass() != this.getClass()) {
+            if(this.getIngredient().getRequiredTool().equals(this.toString())) {
                 if (this.getIngredient().getState() == StateIngredient.FRESH) {
                     this.getIngredient().setState(StateIngredient.PREPARED);
                 } else {
@@ -55,5 +55,13 @@ public class IngredientTool extends Tile implements InterfaceTool{
             }
             return true;
         }
+    }
+
+    public String toString() {
+        return "ingredientTool";
+    }
+
+    public String imgPath() {
+        return "/IB/floor/void.png";
     }
 }

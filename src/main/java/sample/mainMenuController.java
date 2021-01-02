@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import user.User;
+import javafx.scene.text.Text;
+import user.ConnectedUser;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +24,8 @@ public class mainMenuController implements Initializable {
     public Button settingsButton;
     @FXML
     public Button logInButton;
+    @FXML
+    public Label usernameLabel;
 
     public static Button play_button;
     public static Button settings_button;
@@ -59,5 +64,12 @@ public class mainMenuController implements Initializable {
         SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    @FXML
+    public void initialize(){
+        usernameLabel.setText(Main.user.getUserName());
+        if (Main.user.getAccess().equals("admin")){
+            usernameLabel.setStyle("-fx-text-fill: red;");
+        }
+    }
 
 }

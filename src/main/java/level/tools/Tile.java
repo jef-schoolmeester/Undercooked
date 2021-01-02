@@ -17,4 +17,12 @@ public class Tile {
     public int getPosY() {
         return posY;
     }
+
+    public String toString() {
+        return "tile";
+    }
+
+    public String imgPath() {
+        return "/IB/floor/tileFloor.png";
+    }
 }

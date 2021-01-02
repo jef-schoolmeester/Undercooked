@@ -5,10 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import user.ConnectedUser;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,13 +23,17 @@ public class LoginMenuController implements Initializable {
     public Button changeLoginSignInButton;
     @FXML
     public Button goBack;
+    @FXML
+    public TextField userText;
+    @FXML
+    public PasswordField passwordText;
 
     public static Button login_signin;
     public static Button change_login;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        login_signin = loginSignIn;
+        login_signin = loginSignIn;             //Je n'ai pas compris à quoi servaient ces variables si on peut m'aider
         change_login = changeLoginSignInButton;
     }
 
@@ -56,11 +61,17 @@ public class LoginMenuController implements Initializable {
 
     @FXML
     public void login(MouseEvent mouseEvent) {
-        if(loginSignIn.getText().equals("Sign in")){
+        if(loginSignIn.getText().equals("SIGN IN")){
             //créer compte
+            Main.user.addUser(userText.getText(), passwordText.getText());
+            ConnectedUser newUser = Main.user.connectUser(userText.getText(), passwordText.getText());
+            Main.user = newUser;
+            //Main.user.connectUser(userText.getText(), passwordText.getText());
         }
-        else if(loginSignIn.getText().equals("Log in")){
+        else if(loginSignIn.getText().equals("LOG IN")){
             //connexion
+            Main.user = Main.user.connectUser(userText.getText(), passwordText.getText());
+            System.out.println(Main.user);
         }
     }
 
