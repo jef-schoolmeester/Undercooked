@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import user.ConnectedUser;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +21,8 @@ public class mainMenuController {
     public Button settingsButton;
     @FXML
     public Button logInButton;
+    @FXML
+    public Label usernameLabel;
 
     @FXML
     public void changeToPlay(MouseEvent mouseEvent) throws IOException {
@@ -40,5 +45,9 @@ public class mainMenuController {
         logInButton.getScene().setRoot(root);
     }
 
+    @FXML
+    public void initialize(){
+        usernameLabel.setText(Main.user.getUserName());
+    }
 
 }
