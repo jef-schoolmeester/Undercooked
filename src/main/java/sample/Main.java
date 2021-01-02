@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import level.Level;
 
 import java.io.File;
 import java.net.URL;
@@ -12,6 +13,7 @@ import java.net.URL;
 public class Main extends Application {
 
     protected Stage primaryStage;
+    public static Level level;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
