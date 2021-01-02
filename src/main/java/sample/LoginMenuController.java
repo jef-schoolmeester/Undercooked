@@ -5,10 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.text.Font;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import user.ConnectedUser;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -23,13 +24,18 @@ public class LoginMenuController implements Initializable {
     }
 
     @FXML
-    protected Button loginSignIn;
+    public Button loginSignIn;
     @FXML
-    protected Button changeLoginSignInButton;
+    public Button changeLoginSignInButton;
     @FXML
-    public Button back;
+    public Button goBack;
+    @FXML
+    public TextField userText;
+    @FXML
+    public PasswordField passwordText;
 
-    public void changeLoginSignIn(javafx.scene.input.MouseEvent mouseEvent) {
+    @FXML
+    public void changeLoginSignIn(MouseEvent mouseEvent) {
         if (changeLoginSignInButton.getText().equals("No account ? Sign in")) {
             loginSignIn.setText("SIGN IN");
             changeLoginSignInButton.setText("Already signed in ? Log in");
@@ -42,18 +48,27 @@ public class LoginMenuController implements Initializable {
 
     }
 
-    public void login(javafx.scene.input.MouseEvent mouseEvent) {
-        if(loginSignIn.getText().equals("Sign in")){
+    @FXML
+    public void login(MouseEvent mouseEvent) {
+        if(loginSignIn.getText().equals("SIGN IN")){
             //créer compte
+            Main.user.addUser(userText.getText(), passwordText.getText());
+            ConnectedUser newUser = Main.user.connectUser(userText.getText(), passwordText.getText());
+            Main.user = newUser;
+            //Main.user.connectUser(userText.getText(), passwordText.getText());
         }
-        else if(loginSignIn.getText().equals("Log in")){
+        else if(loginSignIn.getText().equals("LOG IN")){
             //connexion
+            Main.user = Main.user.connectUser(userText.getText(), passwordText.getText());
+            System.out.println(Main.user);
         }
     }
 
-    public void back(javafx.event.ActionEvent actionEvent) throws IOException {
-        URL url = new File("src/main/java/sample/Controller.fxml").toURI().toURL();
+    @FXML
+    public void goBack(MouseEvent mouseEvent) throws IOException {
+        URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        back.getScene().setRoot(root);
+        goBack.getScene().setRoot(root);
     }
+
 }

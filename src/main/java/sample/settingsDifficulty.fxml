@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #737373;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingsDifficultyController">
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #737373;" stylesheets="@mainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingsDifficultyController">
    <children>
       <Pane layoutX="27.0" layoutY="72.0" prefHeight="200.0" prefWidth="295.0" style="-fx-background-color: #C4C4C4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="27.0" layoutY="27.0" mnemonicParsing="false" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: C4C4C4;" text="&lt;--">
+            <Button fx:id="goBack" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="89.0" prefWidth="240.0" style="-fx-background-color: C4C4C4;" text="&lt;--">
                <font>
                   <Font name="Verdana Bold" size="41.0" />
                </font>
