@@ -17,11 +17,8 @@ import java.util.ResourceBundle;
 
 public class LoginMenuController implements Initializable {
 
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
     public Button loginSignIn;
@@ -45,7 +42,6 @@ public class LoginMenuController implements Initializable {
             changeLoginSignInButton.setText("No account ? Sign in");
             System.out.println("NO");
         }
-
     }
 
     @FXML
@@ -70,5 +66,4 @@ public class LoginMenuController implements Initializable {
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
     }
-
 }

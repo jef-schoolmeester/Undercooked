@@ -40,4 +40,9 @@ public class ConnectedUser extends User{
     public String getUserName(){
         return userDoc.getString("user_name");
     }
+
+    @Override
+    public String getAccess() {
+        return this.access;
+    }
 }

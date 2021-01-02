@@ -48,6 +48,9 @@ public class mainMenuController {
     @FXML
     public void initialize(){
         usernameLabel.setText(Main.user.getUserName());
+        if (Main.user.getAccess().equals("admin")){
+            usernameLabel.setStyle("-fx-text-fill: red;");
+        }
     }
 
 }
