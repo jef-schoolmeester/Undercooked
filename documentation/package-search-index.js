@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"level"},{"l":"level.customer"},{"l":"level.pizzaiolo"},{"l":"level.recipe"},{"l":"level.threads"},{"l":"level.tools"},{"l":"sample"},{"l":"sample.level"},{"l":"user"}];updateSearchResults();
