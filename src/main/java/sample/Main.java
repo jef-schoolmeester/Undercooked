@@ -20,14 +20,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        URL url = new File("src/main/java/sample/level/level.fxml").toURI().toURL();
+        URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         this.primaryStage.setTitle("Undercooked");
         this.primaryStage.setScene(new Scene(root, 1100, 800));
 
         this.primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
