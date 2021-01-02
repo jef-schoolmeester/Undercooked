@@ -107,8 +107,6 @@ public class User {
      * @param item2
      * @return
      */
-
-    //Méthode générale difficile à faire fonctionner (besoin que l'auteur s'en occupe
     public String query(String collec, String name, String item1, String item2) {
         DBCollection collection = (DBCollection) database.getCollection(collec);
         BasicDBObject searchQuery = new BasicDBObject();
@@ -125,6 +123,10 @@ public class User {
     }
 
     //Test d'une méthode plus ciblé vers Recipe
+
+    /**
+     *
+     */
     public void findRecipes() {
         MongoCollection<Document> collection = database.getCollection("Recipes");
         ArrayList<String> documentList = new ArrayList<>();
@@ -142,12 +144,20 @@ public class User {
         return "null";*/
     }
 
+    /**
+     *
+     * @param mongoObject
+     */
     public void mongoRecipeToList(String mongoObject) {
         mongoObject = mongoObject.substring(mongoObject.indexOf("name"));
         mongoObject = mongoObject.replaceAll("]}}", "");
         System.out.println(mongoObject);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserName() {
         return this.userName;
     }

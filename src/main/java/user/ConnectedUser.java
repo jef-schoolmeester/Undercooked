@@ -50,6 +50,12 @@ public class ConnectedUser extends User{
         return new Document("user_name", super.getUserName()).append("password", this.password).append("access", this.access);
     }
 
+    /**
+     * Define if an User is connected or not
+     *<i>Never Used</i>
+     *
+     * @return a Boolean
+     */
     public boolean isConnected(){
         if (this.userDoc.isEmpty()) {
             return false;
@@ -58,12 +64,30 @@ public class ConnectedUser extends User{
         }
     }
 
+    /**
+     * Getter from attribute userDoc
+     *
+     * @return a BSonDocument from this User
+     */
     public Document getUserDoc() { return userDoc; }
 
+    /**
+     * Override of inherited method
+     * @see User#getUserName()
+     *
+     * @return a UserName as a String from this User
+     */
+    @Override
     public String getUserName(){
         return userDoc.getString("user_name");
     }
 
+    /**
+     * Override of inherited method
+     * @see User#getAccess()
+     *
+     * @return an Access as a String from this User
+     */
     @Override
     public String getAccess() {
         return this.access;
