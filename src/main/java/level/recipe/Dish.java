@@ -10,11 +10,13 @@ public class Dish {
 
     public Dish() {
         this.listIngredient = new ArrayList<>();
+        this.stateDish = StateDish.RAW;
     }
 
     public Dish(Ingredient ingredient) {
         this.listIngredient = new ArrayList<>();
         this.listIngredient.add(ingredient);
+        this.stateDish = StateDish.RAW;
         this.checkCurrentState();
     }
 
@@ -54,6 +56,13 @@ public class Dish {
         }
     }
 
+    public String toString() {
+        String value = this.stateDish.toString() + " ";
+        for (Ingredient i: listIngredient) {
+            value += i.toString() + " ";
+        }
+        return value;
+    }
 
 
     // Je ne sais pas quelle méthode est la plus simple, ou bien celle qu'on devrait utiliser le plus, aussecour

@@ -13,18 +13,21 @@ public class Ingredient {
 
 	private String name;
 	private StateIngredient state;
-	private IngredientTool requiredTool;
+	private String requiredTool;
+	private String imagePath;
 
-	public Ingredient(String name, IngredientTool requiredTool) {
+	public Ingredient(String name, String requiredTool, String imagePath) {
 		this.name = name;
 		this.state = StateIngredient.FRESH;
 		this.requiredTool = requiredTool;
+		this.imagePath = imagePath;
 	}
 
-	public Ingredient(String name, StateIngredient state, IngredientTool requiredTool) {
+	public Ingredient(String name, StateIngredient state, String requiredTool, String imagePath) {
 		this.name = name;
 		this.state = state;
 		this.requiredTool = requiredTool;
+		this.imagePath = imagePath;
 	}
 
 	public String getName() {
@@ -36,7 +39,7 @@ public class Ingredient {
 	}
 
 
-	public IngredientTool getRequiredTool() {
+	public String getRequiredTool() {
 		return this.requiredTool;
 	}
 
@@ -46,7 +49,24 @@ public class Ingredient {
 	}
 
 
-	public boolean equals(Ingredient ingredient) {
-		return this.name.equals(ingredient.getName()) && this.state == ingredient.getState();
+	@Override
+	public boolean equals(Object object) {
+		if (object.getClass() == Ingredient.class) {
+			return this.name.equals(((Ingredient) object).getName()) && this.state == ((Ingredient) object).getState();
+		} else {
+			return false;
+		}
+	}
+
+	public Ingredient getRawIngredient() {
+		return new Ingredient(this.getName(), this.getRequiredTool(), this.imagePath);
+	}
+
+	public String getImagePath() {
+		return this.imagePath;
+	}
+
+	public String toString() {
+		return name+ " " + state.toString() + " " + requiredTool;
 	}
 }

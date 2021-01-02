@@ -17,4 +17,12 @@ public class Workplan extends DishTool {
         }
         return true;
     }
+
+    public String toString() {
+        return "workplan";
+    }
+
+    public String imgPath() {
+        return "/IB/tools/workplan.png";
+    }
 }
