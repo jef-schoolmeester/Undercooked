@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the view settingsAddLanguage.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class SettingsAddLanguageController implements Initializable {
 
     @FXML
@@ -31,6 +37,7 @@ public class SettingsAddLanguageController implements Initializable {
     public static SettingsAddLanguageController self;
 
     /**
+     * @see Initializable
      *
      * @param url
      * @param resourceBundle
@@ -41,6 +48,7 @@ public class SettingsAddLanguageController implements Initializable {
     }
 
     /**
+     * Allow to change to Select Language submenu
      *
      * @param mouseEvent
      * @throws IOException
@@ -53,6 +61,7 @@ public class SettingsAddLanguageController implements Initializable {
     }
 
     /**
+     * @see SettingsSelectLanguageController#changeToAddRecipe(MouseEvent)
      *
      * @param mouseEvent
      * @throws IOException
@@ -65,6 +74,7 @@ public class SettingsAddLanguageController implements Initializable {
     }
 
     /**
+     * @see SettingsSelectLanguageController#changeToDifficulty(MouseEvent)
      *
      * @param mouseEvent
      * @throws IOException
@@ -77,6 +87,8 @@ public class SettingsAddLanguageController implements Initializable {
     }
 
     /**
+     * Used on other controllers
+     * @see LoginMenuController#goBack(MouseEvent)
      *
      * @param mouseEvent
      * @throws IOException

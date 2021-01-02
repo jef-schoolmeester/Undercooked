@@ -97,6 +97,8 @@ public class LoginMenuController implements Initializable {
      *
      * @param mouseEvent
      * @throws IOException
+     *
+     * @author Pierre
      */
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {

@@ -18,6 +18,7 @@ public class Main extends Application {
     static User user = new User();
 
     /**
+     * Main method that launch the game
      *
      * @param primaryStage
      * @throws Exception

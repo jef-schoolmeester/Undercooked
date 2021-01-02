@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the view settingsDifficulty.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class SettingsDifficultyController implements Initializable {
 
     @FXML
@@ -31,6 +37,7 @@ public class SettingsDifficultyController implements Initializable {
     public static SettingsDifficultyController self;
 
     /**
+     * @see Initializable
      *
      * @param url
      * @param resourceBundle
@@ -41,6 +48,7 @@ public class SettingsDifficultyController implements Initializable {
     }
 
     /**
+     * @see SettingsAddLanguageController#changeToLanguage(MouseEvent) 
      *
      * @param mouseEvent
      * @throws IOException
@@ -53,6 +61,7 @@ public class SettingsDifficultyController implements Initializable {
     }
 
     /**
+     * @see SettingsSelectLanguageController#changeToAddLanguage(MouseEvent) 
      *
      * @param mouseEvent
      * @throws IOException
@@ -65,6 +74,7 @@ public class SettingsDifficultyController implements Initializable {
     }
 
     /**
+     * @see SettingsSelectLanguageController#changeToAddRecipe(MouseEvent) 
      *
      * @param mouseEvent
      * @throws IOException
@@ -77,6 +87,7 @@ public class SettingsDifficultyController implements Initializable {
     }
 
     /**
+     * @see LoginMenuController#goBack(MouseEvent) 
      *
      * @param mouseEvent
      * @throws IOException
