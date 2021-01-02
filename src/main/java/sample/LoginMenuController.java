@@ -72,9 +72,10 @@ public class LoginMenuController implements Initializable {
      * @see user.User
      *
      * @author Yohann
-     * @version 1.0
+     * @since 1.0
      * @author Pierre
      * @since 2.0
+     * @version 2.0
      */
     @FXML
     public void login(MouseEvent mouseEvent) {
