@@ -68,8 +68,8 @@ public class User {
      */
 
     //Méthode générale difficile à faire fonctionner (besoin que l'auteur s'en occupe
-    public String query(String collec, String name, String item1, String item2){
-        DBCollection collection = database.getCollection(collec);
+    public String query(String collec, String name, String item1, String item2) {
+        DBCollection collection = (DBCollection) database.getCollection(collec);
         BasicDBObject searchQuery = new BasicDBObject();
         BasicDBObject search2 = new BasicDBObject();
         search2.put(item1,1);
@@ -90,6 +90,7 @@ public class User {
         while (cursor.hasNext()){
             return cursor.next().getString(listOfIngredientsName);
         }
+        return "null";
     }
 
     public String getUserName() {
