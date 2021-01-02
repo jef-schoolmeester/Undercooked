@@ -185,8 +185,7 @@ public class LevelController {
         this.clickTileX = 4;
         this.clickTileY = 4;
         this.walking = 0;
-        //this.timer = 181.75;
-        this.timer = 25.75;
+        this.timer = 181.75;
         animationTimer.start();
         //System.out.println(this.level.getPizzaiolo().getHand().getIngredient().toString());
     }
