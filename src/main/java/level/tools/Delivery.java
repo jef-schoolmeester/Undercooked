@@ -33,7 +33,7 @@ public class Delivery extends DishTool{
         return "delivery";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/tools/delivery.png";
     }
 

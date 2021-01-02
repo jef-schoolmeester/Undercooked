@@ -16,7 +16,7 @@ public class IngredientContainer extends IngredientTool {
 
     @Override
     public Ingredient takeIngredient() {
-        return new Ingredient(this.ingredient.getName(), this.ingredient.getState(), this.ingredient.getRequiredTool(), this.ingredient.getImagePath());
+        return new Ingredient(this.ingredient.getName(), this.ingredient.getState(), this.ingredient.getRequiredTool());
     }
 
     @Override
@@ -28,7 +28,7 @@ public class IngredientContainer extends IngredientTool {
         return "ingredientContainer";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return this.ingredient.getImagePath();
     }
 }

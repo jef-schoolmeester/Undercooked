@@ -100,13 +100,13 @@ public class CustommerThread extends Thread {
     private double waitingTime(CustomerState customerState) {
         switch (customerState) {
             case PATIENT -> {
-                return 25;
+                return 30;
             }
             case NORMAL -> {
-                return 17;
+                return 25;
             }
             case IMPATIENT -> {
-                return 12;
+                return 20;
             }
             default -> {
                 System.out.println("START PLATINUM");

@@ -8,4 +8,8 @@ public class Grater extends IngredientTool {
     public String toString() {
         return "grater";
     }
+
+    public String getImagePath() {
+        return "/IB/tools/grater.png";
+    }
 }

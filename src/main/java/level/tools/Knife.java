@@ -8,4 +8,8 @@ public class Knife extends IngredientTool {
     public String toString() {
         return "knife";
     }
+
+    public String getImagePath() {
+        return "/IB/tools/knife.png";
+    }
 }

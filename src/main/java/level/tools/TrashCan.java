@@ -25,7 +25,7 @@ public class TrashCan extends IngredientTool {
         return "trashCan";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/tools/trashCan.png";
     }
 }

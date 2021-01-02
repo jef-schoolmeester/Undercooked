@@ -10,7 +10,7 @@ public class VoidTile extends Tile{
         return "void";
     }
 
-    public String imgPath() {
+    public String getImagePath() {
         return "/IB/floor/void.png";
     }
 }
