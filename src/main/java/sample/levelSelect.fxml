@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #737373;" stylesheets="@mainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.levelSelectController">
-       <Label layoutX="870.0" layoutY="28.0" prefHeight="30.0" prefWidth="226.0" text="User name" textFill="WHITE">
+       <Label fx:id="usernameLabel" layoutX="871.0" layoutY="28.0" prefHeight="30.0" prefWidth="220.0" textAlignment="RIGHT" text="User name" textFill="WHITE">
            <font>
                <Font name="Verdana Bold" size="18.0" />
            </font>
