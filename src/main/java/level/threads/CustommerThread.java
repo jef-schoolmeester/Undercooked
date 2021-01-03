@@ -5,6 +5,7 @@ import level.customer.CustomerState;
 import level.customer.Order;
 import level.recipe.Recipe;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class CustommerThread extends Thread {
@@ -41,6 +42,7 @@ public class CustommerThread extends Thread {
                 for (Order order: level.getCustommers()) {
                     order.setTime(order.getTime() - 0.025);
                 }
+                this.removeOutdatedOrders();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -97,35 +99,28 @@ public class CustommerThread extends Thread {
         }
     }
 
-    private double waitingTime(CustomerState customerState) {
+    private double waitingTime(CustomerState customerState, Recipe recipe) {
+        int baseTime = recipe.getListIngredient().size()*5;
         switch (customerState) {
-            case PATIENT -> {
-                return 30;
-            }
             case NORMAL -> {
-                return 25;
+                return (13 + baseTime);
             }
             case IMPATIENT -> {
-                return 20;
+                return (10 + baseTime);
             }
             default -> {
-                System.out.println("START PLATINUM");
-                return 25;
+                return (15 + baseTime);
             }
         }
     }
 
     private void setTimeBetweenCustomer() {
         switch (level.getDifficulty()) {
-            case EASY -> this.timeBetweenCustomer = 25;
-            case NORMAL -> this.timeBetweenCustomer = 20;
-            case HARD -> this.timeBetweenCustomer = 17;
-            case VERY_HARD -> this.timeBetweenCustomer = 15;
-            case INSANE -> this.timeBetweenCustomer = 12;
-            default -> {
-                System.out.println("ZA WARULDO");
-                this.timeBetweenCustomer = 25;
-            }
+            case NORMAL -> this.timeBetweenCustomer = 22;
+            case HARD -> this.timeBetweenCustomer = 20;
+            case VERY_HARD -> this.timeBetweenCustomer = 17;
+            case INSANE -> this.timeBetweenCustomer = 15;
+            default -> this.timeBetweenCustomer = 25;
         }
     }
 
@@ -138,7 +133,23 @@ public class CustommerThread extends Thread {
 
     private void addCustomer() {
         CustomerState state = this.generateCustomerState();
-        this.level.getCustommers().add(new Order(this.randomRecipe(), this.waitingTime(state), state));
+        Recipe randomRecipe = this.randomRecipe();
+        this.level.getCustommers().add(new Order(this.randomRecipe(), this.waitingTime(state, randomRecipe), state));
+    }
+
+    private void removeOutdatedOrders() {
+        for (Order order : this.level.getCustommers()) {
+            if (order.getTime() <= 0) {
+                this.level.getCustommers().remove(order);
+                switch (this.level.getDifficulty()) {
+                    case NORMAL -> this.level.addScore(-7);
+                    case HARD -> this.level.addScore(-11);
+                    case VERY_HARD -> this.level.addScore(-15);
+                    case INSANE -> this.level.addScore(-17);
+                    default -> this.level.addScore(-5);
+                }
+            }
+        }
     }
 
     public void stopRunning() {
