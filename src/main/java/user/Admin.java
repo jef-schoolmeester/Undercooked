@@ -16,6 +16,8 @@ public class Admin extends ConnectedUser{
 
 
     /**
+     * Constructor that allow a connexion to an existent user as admin from the database
+     * @see ConnectedUser#ConnectedUser(String, String)
      *
      * @param userName
      * @param password
@@ -27,10 +29,11 @@ public class Admin extends ConnectedUser{
     }
 
     /**
+     * Method that add an user with admin access as a document in the collection : "Users" in the Database
      *
      * @param userName
      * @param password
-     * @return
+     * @return a Boolean to catch possible errors
      */
     public boolean addAdmin(String userName, String password) {
         try {
