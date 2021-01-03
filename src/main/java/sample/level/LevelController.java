@@ -10,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import level.Level;
 import level.customer.Order;
@@ -25,10 +23,23 @@ import sample.Main;
 
 import java.io.File;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * This controller manages the visual part of the Level
+ * @see Order
+ * @see Level
+ * @see level.pizzaiolo.Pizzaiolo
+ * @see IngredientTool
+ * @see Tile
+ * @see DishTool
+ *
+ * @author Jef
+ * @since 1.0
+ * @version 2.0
+ *
+ */
 public class LevelController {
 
     @FXML
@@ -74,6 +85,14 @@ public class LevelController {
 
     private Level level;
 
+    /**
+     * This timer manages the Visual part of the level and checks the delivered Dishes
+     * First, it makes the pizzaiolo walk towards it's destination (defined by a click on a tile)
+     * It also makes the oven flash when the dish inside is ready
+     * This timer also manages the visual part of the orders and inventory (hand)
+     * @since 2.0
+     *
+     */
     public AnimationTimer animationTimer = new AnimationTimer() {
         @Override
         public void handle(long l) {
@@ -82,6 +101,7 @@ public class LevelController {
                 timer -= 0.025;
                 timerValue.setText((Math.round(timer * 10.0)/10.0) + "s");
 
+                //Algorithm that make the pizzaiolo move
                 isWalking = true;
                 if (Math.abs(pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() - clickPosX) > 10) {
                     if (pizzaiolo.localToScene(pizzaiolo.getBoundsInLocal()).getCenterX() < clickPosX) {
@@ -117,6 +137,7 @@ public class LevelController {
                     default -> {}
                 }
 
+                //Flash the oven
                 switch (checkIfDishInOvenIsCooked()) {
                     case COOKED -> {
                         ovenFlashing++;
@@ -147,6 +168,7 @@ public class LevelController {
                     }
                 }
 
+                //Pizzaiolo animation
                 if (isWalking) {
                     walking += 1;
                     if (walking > 5) {
@@ -165,6 +187,7 @@ public class LevelController {
                 score.setText(Math.round(level.getScore()*10.0)/10.0 + " €");
 
 
+                // Sets the inventory color depending on the dish state
                 if (level.getPizzaiolo().getHand().isDish()) {
                     if (level.getPizzaiolo().getHand().getDish().getStateDish() == StateDish.COOKED) {
                         inventoryGrid.setStyle("-fx-border-color: lime;" + "-fx-border-width: 2");
@@ -191,6 +214,10 @@ public class LevelController {
         }
     };
 
+    /**
+     * Initialises the visual part of a level and start the timer
+     * @since 1.0
+     */
     public void initialize() {
         this.level = Main.level;
 
@@ -229,23 +256,52 @@ public class LevelController {
         animationTimer.start();
     }
 
+    /**
+     * adds a Tile to the level playable grid gameGrid
+     * @param colIndex X axis pos on the level Table
+     * @param rowIndex Y axis pos on the level Table
+     * @param imagePath path to it's image
+     * @since 1.0
+     */
     private void addFloorTile(int colIndex, int rowIndex, String imagePath) {
         ImageView imageView = new ImageView(imagePath);
         imageView.setOnMouseClicked(e -> tileClicked(e, colIndex, rowIndex));
         gameGrid.add(imageView, colIndex, rowIndex);
     }
 
+    /**
+     *
+     * adds a VoidTile to the level playable grid gameGrid
+     * A void tile cannot be interacted with
+     * @param colIndex X axis pos on the level Table
+     * @param rowIndex Y axis pos on the level Table
+     * @param imagePath path to it's image
+     * @since 1.0
+     */
     private void addVoidTile(int colIndex, int rowIndex, String imagePath) {
         ImageView imageView = new ImageView(imagePath);
         gameGrid.add(imageView, colIndex, rowIndex);
     }
 
+    /**
+     *
+     * adds a tool Tile to the level playable grid gameGrid
+     * The tool can be interacted with if the pizzaiolo is within 1 block
+     * @param colIndex X axis pos on the level Table
+     * @param rowIndex Y axis pos on the level Table
+     * @param imagePath path to it's image
+     * @since 1.0
+     */
     private void addToolTile(int colIndex, int rowIndex, String imagePath) {
         ImageView imageView = new ImageView(imagePath);
         imageView.setOnMouseClicked(e -> toolClicked(e, colIndex, rowIndex));
         gameGrid.add(imageView, colIndex, rowIndex);
     }
 
+    /**
+     * Sets the pizzaiolo's visual inventory depending on the level's pizzaiolo's hand state
+     * @since 2.0
+     */
     private void setInventory() {
         if (!this.level.getPizzaiolo().getHand().isHandFull()) {
             this.inventoryGrid.getChildren().clear();
@@ -260,7 +316,13 @@ public class LevelController {
         }
     }
 
-
+    /**
+     * Change the pizzaiolo's destination on click
+     * @param e the mouseClick
+     * @param posX the Table's X axis
+     * @param posY the Table's Y axis
+     * @since 1.0
+     */
     @FXML
     private void tileClicked(MouseEvent e, int posX, int posY) {
         Node source = (Node)e.getSource() ;
@@ -270,6 +332,13 @@ public class LevelController {
         this.clickTileY = posY;
     }
 
+    /**
+     * Make the pizzaiolo use a tool on click
+     * @param e the mouseClick
+     * @param posX X axis pos of the tool
+     * @param posY Y axis pos of the tool
+     * @since 1.0
+     */
     @FXML
     private void toolClicked(MouseEvent e, int posX, int posY) {
         if (this.level.getTable().get(posX).get(posY) instanceof IngredientTool) {
@@ -282,6 +351,10 @@ public class LevelController {
         this.setInventory();
     }
 
+    /**
+     * Sets the visual part of the order depending on the level's order's list
+     * @since 2.0
+     */
     public void setOrders() {
         this.custommerGrid.getChildren().clear();
         if (this.level.getCustommers().size() != 0) {
@@ -306,6 +379,13 @@ public class LevelController {
         }
     }
 
+    /**
+     *  Generates a visual list of ingredients for the inventory or order list
+     * @param ingredientIterator list of ingredients
+     * @param gridPane pane to set the list in
+     * @param size size of a Ingredient
+     * @since 2.0
+     */
     private void generateListIngredientsView(Iterator<Ingredient> ingredientIterator, GridPane gridPane, int size) {
         int column = 0;
         int row = 0;
@@ -323,7 +403,10 @@ public class LevelController {
         }
     }
 
-
+    /**
+     * Checks if a delivered dish is matching with a order
+     * @since 2.0
+     */
     private void checkDelivery() {
         for (int dishIndex = 0; dishIndex < this.level.getDelivery().getPreparedDishes().size(); dishIndex++) {
             for (int orderIndex = 0; orderIndex < this.level.getCustommers().size(); orderIndex++) {
@@ -338,6 +421,11 @@ public class LevelController {
         }
     }
 
+    /**
+     *
+     * @return returns the State of the dish in the oven or fresh if none
+     * @since 2.0
+     */
     private StateDish checkIfDishInOvenIsCooked() {
         Dish dish =  ((DishTool) this.level.getTable().get(1).get(0)).getDish();
         if (dish != null) {
