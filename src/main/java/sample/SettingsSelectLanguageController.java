@@ -62,7 +62,7 @@ public class SettingsSelectLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsAddLanguage.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         addLanguageButton.getScene().setRoot(root);
-        checkCurrentLang();
+        //checkCurrentLang();
     }
 
     /**
@@ -76,7 +76,7 @@ public class SettingsSelectLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
-        checkCurrentLang();
+        //checkCurrentLang();
     }
 
     /**
@@ -90,7 +90,7 @@ public class SettingsSelectLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
-        checkCurrentLang();
+        //checkCurrentLang();
     }
 
     /**
@@ -106,20 +106,27 @@ public class SettingsSelectLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
-        checkCurrentLang();
+        //checkCurrentLang();
     }
 
     public void french(MouseEvent mouseEvent) throws IOException {
-        mainMenuController.static_user.setLang("fr_name");
-        checkCurrentLang();
+        Main.user.setLang("fr_game");
+        this.addLanguageButton.setText("Ajouter langue");
+        this.addRecipeButton.setText("Ajouter recette");
+        this.difficultyButton.setText("Difficulté");
+        this.languageButton.setText("Langue");
     }
 
     public void english(MouseEvent mouseEvent) throws IOException {
-        mainMenuController.static_user.setLang("en_name");
-        checkCurrentLang();
+        Main.user.setLang("en_game");
+        this.addLanguageButton.setText("Add Language");
+        this.addRecipeButton.setText("Add recipe");
+        this.difficultyButton.setText("Difficulty");
+        this.languageButton.setText("Language");
+        //checkCurrentLang();
     }
 
-    public void checkCurrentLang(){
+    /*public void checkCurrentLang(){
         if(mainMenuController.static_user.getLang()=="en_name"){
 
             mainMenuController.settings_button.setText("SETTINGS");
@@ -178,5 +185,5 @@ public class SettingsSelectLanguageController implements Initializable {
             LoginMenuController.login_signin.setText("SE CONNECTER");
             LoginMenuController.change_login.setText("Pas de compte ? S'inscrire");
         }
-    }
+    }*/
 }

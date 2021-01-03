@@ -48,7 +48,7 @@ public class levelSelectController {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBackButton.getScene().setRoot(root);
-        SettingsSelectLanguageController.self.checkCurrentLang();
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     public void initialize() {

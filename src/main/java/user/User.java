@@ -29,7 +29,7 @@ public class User {
 
     protected MongoDatabase database;
     private String userName;
-    private String lang = "en_name";
+    private String lang = "en_game";
 
     /**
      * Constructor of User
