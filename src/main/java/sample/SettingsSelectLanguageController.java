@@ -38,7 +38,6 @@ public class SettingsSelectLanguageController implements Initializable {
     @FXML
     public Button english;
 
-    public static SettingsSelectLanguageController self;
 
     /**
      * @see Initializable
@@ -48,7 +47,7 @@ public class SettingsSelectLanguageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        self = this;
+        SettingsAddLanguageController.checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
     }
 
     /**

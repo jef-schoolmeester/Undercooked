@@ -34,13 +34,6 @@ public class SettingsAddLanguageController implements Initializable {
     @FXML
     public Button goBack;
 
-    //Initialization static buttons
-    public static Button static_lang;
-    public static Button static_addLang;
-    public static Button static_addRecipe;
-    public static Button static_difficulty;
-
-    public static SettingsAddLanguageController self;
 
     /**
      * @see Initializable
@@ -50,11 +43,24 @@ public class SettingsAddLanguageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        self = this;
-        static_lang = languageButton;
-        static_addLang = addLanguageButton;
-        static_addRecipe = addRecipeButton;
-        static_difficulty = difficultyButton;
+        checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
+    }
+
+    static void checkLanguage(Button addLanguageButton, Button addRecipeButton, Button difficultyButton, Button languageButton) {
+        switch (Main.user.getLang()) {
+            case "fr_game" -> {
+                addLanguageButton.setText("Ajouter langue");
+                addRecipeButton.setText("Ajouter recette");
+                difficultyButton.setText("Difficulté");
+                languageButton.setText("Langue");
+            }
+            default -> {
+                addLanguageButton.setText("Add Language");
+                addRecipeButton.setText("Add recipe");
+                difficultyButton.setText("Difficulty");
+                languageButton.setText("Language");
+            }
+        }
     }
 
     /**

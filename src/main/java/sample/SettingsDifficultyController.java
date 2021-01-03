@@ -34,14 +34,6 @@ public class SettingsDifficultyController implements Initializable {
     @FXML
     public Button goBack;
 
-    //Initialization static buttons
-    public static Button static_lang;
-    public static Button static_addLang;
-    public static Button static_addRecipe;
-    public static Button static_difficulty;
-    public static Button static_back;
-
-    public static SettingsDifficultyController self;
 
     /**
      * @see Initializable
@@ -51,12 +43,7 @@ public class SettingsDifficultyController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        self = this;
-        static_lang = languageButton;
-        static_addLang = addLanguageButton;
-        static_addRecipe = addRecipeButton;
-        static_difficulty = difficultyButton;
-        static_back = goBack;
+        SettingsAddLanguageController.checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
     }
 
     /**

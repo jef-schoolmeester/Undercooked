@@ -107,6 +107,7 @@ public class mainMenuController {
             }
 
         }
+
         usernameLabel.setText(Main.user.getUserName());
         if (Main.user.getAccess().equals("admin")){
             usernameLabel.setStyle("-fx-text-fill: red;");
