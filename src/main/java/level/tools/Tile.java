@@ -1,7 +1,7 @@
 package level.tools;
 
 /**
- * Class Tile is the base class for all the interactive Objects in a level
+ * Class Tile is the base class for all the interactive Objects in a level's table
  * Has a X-axis position and Y-axis position
  * @see level.Level
  *
