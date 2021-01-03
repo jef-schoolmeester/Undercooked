@@ -71,6 +71,14 @@ public class User {
         }
     }
 
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getLang(){
+        return lang;
+    }
+
     /**
      * Method that connect a lambda user and change status of actual user
      *
