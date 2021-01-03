@@ -29,6 +29,7 @@ public class User {
 
     protected MongoDatabase database;
     private String userName;
+    private String lang = "en_game";
 
     /**
      * Constructor of User
@@ -44,7 +45,7 @@ public class User {
 
     /**
      * Method that allow to browse the collection : "Users" in the Database
-     * 
+     *
      * @return a MongoCursor of the documents in the collection
      */
     public MongoCursor getUsers() {
@@ -68,6 +69,14 @@ public class User {
         } catch (Exception exception) {
             return false;
         }
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getLang(){
+        return lang;
     }
 
     /**
