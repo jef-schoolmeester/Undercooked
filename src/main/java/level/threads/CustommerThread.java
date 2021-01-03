@@ -4,9 +4,20 @@ import level.Level;
 import level.customer.CustomerState;
 import level.customer.Order;
 import level.recipe.Recipe;
+import level.tools.Oven;
 
 import java.util.Random;
 
+/**
+ * CustomerThread is the class that manages the Orders from a level, extends Thread class.
+ * This class has a Level, a boolean, two doubles
+ * @see Level
+ * @see Order
+ *
+ * @author Jef
+ * @since 1.0
+ * @version 1.0
+ */
 public class CustommerThread extends Thread {
 
     private Level level;
@@ -14,6 +25,12 @@ public class CustommerThread extends Thread {
     private boolean isRunning;
     private double timeBetweenCustomer;
 
+    /**
+     * Class constructor
+     * Initialises thread
+     * @param level the level to be managed
+     * @since 1.0
+     */
     public CustommerThread(Level level) {
         this.level = level;
         this.isRunning = true;
@@ -21,6 +38,12 @@ public class CustommerThread extends Thread {
         this.setTimeBetweenCustomer();
 
     }
+
+    /**
+     * Adds new customer to level every X seconds depending on difficulty
+     * Removes customer that didn't have any dish in their waiting time
+     * @since 1.0
+     */
     public void run() {
         while (isRunning) {
             try {
@@ -47,6 +70,11 @@ public class CustommerThread extends Thread {
         }
     }
 
+    /**
+     *
+     * @return CustomerState depending on the difficulty
+     * @since 1.0
+     */
     private CustomerState generateCustomerState() {
         switch (this.level.getDifficulty()) {
             case EASY -> {
@@ -97,6 +125,12 @@ public class CustommerThread extends Thread {
         }
     }
 
+    /**
+     *
+     * @param customerState the patience of the customer
+     * @return a waiting time depending on the customer's state and the dish size
+     * @since 1.0
+     */
     private double waitingTime(CustomerState customerState) {
         switch (customerState) {
             case PATIENT -> {
@@ -115,6 +149,9 @@ public class CustommerThread extends Thread {
         }
     }
 
+    /**
+     *
+     */
     private void setTimeBetweenCustomer() {
         switch (level.getDifficulty()) {
             case EASY -> this.timeBetweenCustomer = 25;
@@ -129,6 +166,11 @@ public class CustommerThread extends Thread {
         }
     }
 
+    /**
+     *
+     * @return a random recipe from the recipe list in level
+     * @since 1.0
+     */
     private Recipe randomRecipe() {
         Random r = new Random();
         int low = 0;
@@ -136,11 +178,19 @@ public class CustommerThread extends Thread {
         return this.level.getRecipes().get(r.nextInt(high-low) + low);
     }
 
+    /**
+     * adds a customer in the managed level
+     * @since 1.0
+     */
     private void addCustomer() {
         CustomerState state = this.generateCustomerState();
         this.level.getCustommers().add(new Order(this.randomRecipe(), this.waitingTime(state), state));
     }
 
+    /**
+     * stops the thread from running
+     * @since 1.0
+     */
     public void stopRunning() {
         this.isRunning = false;
     }
