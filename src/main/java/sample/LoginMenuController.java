@@ -25,15 +25,6 @@ import java.util.ResourceBundle;
 public class LoginMenuController implements Initializable {
 
 
-    /**
-     * @see Initializable
-     *
-     * @param url
-     * @param resourceBundle
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
-
     @FXML
     public Button loginSignIn;
     @FXML
