@@ -92,6 +92,10 @@ public class DishTool extends Tile implements InterfaceTool{
         }
     }
 
+    public Dish getDish() {
+        return this.dish;
+    }
+
     /**
      *
      * @return the class name

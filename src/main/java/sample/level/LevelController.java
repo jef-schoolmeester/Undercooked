@@ -10,9 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import level.Level;
 import level.customer.Order;
+import level.recipe.Dish;
 import level.recipe.Ingredient;
 import level.recipe.StateDish;
 import level.tools.DishTool;
@@ -22,6 +25,7 @@ import sample.Main;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -63,6 +67,8 @@ public class LevelController {
     private Walking walkingState;
     private boolean isWalking;
     private String walkingPath;
+
+    private int ovenFlashing;
 
     private double timer;
 
@@ -108,7 +114,37 @@ public class LevelController {
                     case WALKING_DOWN -> walkingPath = "down";
                     case WALKING_LEFT -> walkingPath = "left";
                     case WALKING_RIGHT -> walkingPath = "right";
-                    default -> System.out.println("STAR PLATINUM");
+                    default -> {}
+                }
+
+                switch (checkIfDishInOvenIsCooked()) {
+                    case COOKED -> {
+                        ovenFlashing++;
+                        if (ovenFlashing > 5) {
+                            gameGrid.getChildren().get(9).setOpacity(0.5);
+                        } else {
+                            gameGrid.getChildren().get(9).setOpacity(1);
+                        }
+                        if (ovenFlashing > 10) {
+                            ovenFlashing = 0;
+                        }
+                    }
+                    case TRASH -> {
+                        ovenFlashing++;
+                        if (ovenFlashing > 2) {
+                            gameGrid.getChildren().get(9).setOpacity(0.5);
+                        } else {
+                            gameGrid.getChildren().get(9).setOpacity(1);
+                        }
+
+                        if (ovenFlashing > 4) {
+                            ovenFlashing = 0;
+                        }
+                    }
+                    default -> {
+                        ovenFlashing = 0;
+                        gameGrid.getChildren().get(9).setOpacity(1);
+                    }
                 }
 
                 if (isWalking) {
@@ -125,22 +161,22 @@ public class LevelController {
                     pizzaiolo.setImage(new Image(getClass().getResourceAsStream("/IB/player/"+ walkingPath +"Stand.png")));
                 }
                 checkDelivery();
-                removeOutdatedOrders();
                 setOrders();
                 score.setText(Math.round(level.getScore()*10.0)/10.0 + " €");
 
-                /*if (level.getPizzaiolo().getHand().isDish()) {
+
+                if (level.getPizzaiolo().getHand().isDish()) {
                     if (level.getPizzaiolo().getHand().getDish().getStateDish() == StateDish.COOKED) {
-                        inventoryGrid.setStyle("-fx-border-color: green");
+                        inventoryGrid.setStyle("-fx-border-color: lime;" + "-fx-border-width: 2");
                     } else if (level.getPizzaiolo().getHand().getDish().getStateDish() == StateDish.TRASH) {
-                        inventoryGrid.setStyle("-fx-border-color: purple");
+                        inventoryGrid.setStyle("-fx-border-color: purple;" + "-fx-border-width: 2");
                     } else {
-                        inventoryGrid.setStyle("-fx-border-color: white");
+                        inventoryGrid.setStyle("-fx-border-color: white;" + "-fx-border-width: 2");
                     }
                 } else {
-                    inventoryGrid.setStyle("-fx-border-color: white");
-                }*/
-                if (timer < 0) {
+                    inventoryGrid.setStyle("-fx-border-color: white;" + "-fx-border-width: 2");
+                }
+                if (timer < 0 || level.getScore() < 0) {
                     URL url = new File("src/main/java/sample/level/endGame.fxml").toURI().toURL();
                     Parent root = FXMLLoader.load(url);
                     timerValue.getScene().setRoot(root);
@@ -188,6 +224,7 @@ public class LevelController {
         this.clickTileX = 4;
         this.clickTileY = 4;
         this.walking = 0;
+        this.ovenFlashing = 0;
         this.timer = 181.75;
         animationTimer.start();
     }
@@ -237,10 +274,10 @@ public class LevelController {
     private void toolClicked(MouseEvent e, int posX, int posY) {
         if (this.level.getTable().get(posX).get(posY) instanceof IngredientTool) {
             this.level.getPizzaiolo().useIngredientTool((IngredientTool) this.level.getTable().get(posX).get(posY));
-            System.out.println(this.level.getPizzaiolo().getHand().toString()+ " ingredient");
+            //System.out.println(this.level.getPizzaiolo().getHand().toString()+ " ingredient");
         } else {
             this.level.getPizzaiolo().useDishTool((DishTool) this.level.getTable().get(posX).get(posY));
-            System.out.println(this.level.getPizzaiolo().getHand().toString() + " dish");
+            //System.out.println(this.level.getPizzaiolo().getHand().toString() + " dish");
         }
         this.setInventory();
     }
@@ -287,23 +324,6 @@ public class LevelController {
     }
 
 
-    private void removeOutdatedOrders() {
-        for (int orderIndex = 0; orderIndex < level.getCustommers().size(); orderIndex++ ) {
-            if (this.level.getCustommers().size() > orderIndex) {
-                if (this.level.getCustommers().get(orderIndex).getTime() <= 0) {
-                    this.level.getCustommers().remove(orderIndex);
-                    switch (this.level.getDifficulty()) {
-                        case NORMAL -> this.level.addScore(-7);
-                        case HARD -> this.level.addScore(-9);
-                        case VERY_HARD -> this.level.addScore(-13);
-                        case INSANE -> this.level.addScore(-15);
-                        default -> this.level.addScore(-5);
-                    }
-                }
-            }
-        }
-    }
-
     private void checkDelivery() {
         for (int dishIndex = 0; dishIndex < this.level.getDelivery().getPreparedDishes().size(); dishIndex++) {
             for (int orderIndex = 0; orderIndex < this.level.getCustommers().size(); orderIndex++) {
@@ -315,6 +335,15 @@ public class LevelController {
                     }
                 }
             }
+        }
+    }
+
+    private StateDish checkIfDishInOvenIsCooked() {
+        Dish dish =  ((DishTool) this.level.getTable().get(1).get(0)).getDish();
+        if (dish != null) {
+            return dish.getStateDish();
+        } else {
+            return StateDish.RAW;
         }
     }
 }
