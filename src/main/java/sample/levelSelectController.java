@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import level.Difficulty;
@@ -30,6 +31,9 @@ public class levelSelectController {
 
     @FXML
     private GridPane levelGrid;
+
+    @FXML
+    public Label usernameLabel;
 
     /**
      * Allow to go back at the main menu.
@@ -124,6 +128,10 @@ public class levelSelectController {
                 rowIndex++;
             }
 
+        }
+        usernameLabel.setText(Main.user.getUserName());
+        if (Main.user.getAccess().equals("admin")){
+            usernameLabel.setStyle("-fx-text-fill: red;");
         }
     }
 
