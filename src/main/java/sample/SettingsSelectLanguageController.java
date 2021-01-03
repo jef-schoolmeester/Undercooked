@@ -48,6 +48,12 @@ public class SettingsSelectLanguageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SettingsAddLanguageController.checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
+
+        if(Main.user.getAccess().equals("user")){
+            this.addLanguageButton.setVisible(false);
+            this.addRecipeButton.setVisible(false);
+            this.difficultyButton.setVisible(false);
+        }
     }
 
     /**
