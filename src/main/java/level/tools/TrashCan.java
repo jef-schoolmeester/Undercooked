@@ -20,4 +20,12 @@ public class TrashCan extends IngredientTool {
     public Ingredient takeIngredient() {
         return null;
     }
+
+    public String toString() {
+        return "trashCan";
+    }
+
+    public String getImagePath() {
+        return "/IB/tools/trashCan.png";
+    }
 }

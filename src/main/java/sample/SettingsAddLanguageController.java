@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the view settingsAddLanguage.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class SettingsAddLanguageController implements Initializable {
 
     @FXML
@@ -36,6 +42,12 @@ public class SettingsAddLanguageController implements Initializable {
 
     public static SettingsAddLanguageController self;
 
+    /**
+     * @see Initializable
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         self = this;
@@ -45,6 +57,12 @@ public class SettingsAddLanguageController implements Initializable {
         static_difficulty = difficultyButton;
     }
 
+    /**
+     * Allow to change to Select Language submenu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToLanguage(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
@@ -53,6 +71,12 @@ public class SettingsAddLanguageController implements Initializable {
         SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    /**
+     * @see SettingsSelectLanguageController#changeToAddRecipe(MouseEvent)
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddRecipe(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
@@ -61,6 +85,12 @@ public class SettingsAddLanguageController implements Initializable {
         SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    /**
+     * @see SettingsSelectLanguageController#changeToDifficulty(MouseEvent)
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToDifficulty(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
@@ -69,6 +99,13 @@ public class SettingsAddLanguageController implements Initializable {
         SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    /**
+     * Used on other controllers
+     * @see LoginMenuController#goBack(MouseEvent)
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();

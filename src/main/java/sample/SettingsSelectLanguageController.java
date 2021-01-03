@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the view settingsSelectLanguage.fxml
+ *
+ * @author Pierre
+ * @version 1.0
+ */
 public class SettingsSelectLanguageController implements Initializable {
 
     @FXML
@@ -34,12 +40,23 @@ public class SettingsSelectLanguageController implements Initializable {
 
     public static SettingsSelectLanguageController self;
 
+    /**
+     * @see Initializable
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         self = this;
     }
 
-    // Première méthode, ne fonctionne pas, need help je comprends pas
+    /**
+     * Allow to change to Add Language submenu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddLanguage(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddLanguage.fxml").toURI().toURL();
@@ -48,7 +65,12 @@ public class SettingsSelectLanguageController implements Initializable {
         checkCurrentLang();
     }
 
-    // Deuxième méthode, ne fonctionne pas non plus, need help je comprends pas
+    /**
+     * Allow to change to Add Recipe submenu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToAddRecipe(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
@@ -57,6 +79,12 @@ public class SettingsSelectLanguageController implements Initializable {
         checkCurrentLang();
     }
 
+    /**
+     * Allow to change to Difficulty submenu
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void changeToDifficulty(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
@@ -65,6 +93,14 @@ public class SettingsSelectLanguageController implements Initializable {
         checkCurrentLang();
     }
 
+    /**
+     * Allow to go back at the main menu.
+     * Used on other controllers
+     * @see LoginMenuController
+     *
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();

@@ -56,7 +56,7 @@ public class User {
 
     /**
      * Method that add an user as a document in the collection : "Users" in the Database
-     *
+     * 
      * @param userName
      * @param password
      * @return a Boolean to catch possible errors
