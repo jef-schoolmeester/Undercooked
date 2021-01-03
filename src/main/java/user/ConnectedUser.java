@@ -31,8 +31,8 @@ public class ConnectedUser extends User{
      * @param userName
      * @param password
      */
-    public ConnectedUser(String userName, String password) {
-        super();
+    public ConnectedUser(String userName, String password, String lang) {
+        super(lang);
         super.setUserName(userName);
 
         this.userDoc = database.getCollection("Users").find(and(eq("user_name", userName), eq("password", password))).first();
@@ -57,11 +57,7 @@ public class ConnectedUser extends User{
      * @return a Boolean
      */
     public boolean isConnected(){
-        if (this.userDoc.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !this.userDoc.isEmpty();
     }
 
     /**

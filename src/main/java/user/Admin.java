@@ -17,13 +17,13 @@ public class Admin extends ConnectedUser{
 
     /**
      * Constructor that allow a connexion to an existent user as admin from the database
-     * @see ConnectedUser#ConnectedUser(String, String)
+     * @see ConnectedUser#ConnectedUser(String, String, String)
      *
      * @param userName
      * @param password
      */
-    public Admin(String userName, String password) {
-        super(userName, password);
+    public Admin(String userName, String password, String lang) {
+        super(userName, password, lang);
         //super.userDoc.replace("access", "user", "admin");
         //super.access = super.userDoc.getString("access");
     }

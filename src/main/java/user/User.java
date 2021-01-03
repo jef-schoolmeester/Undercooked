@@ -29,19 +29,22 @@ public class User {
 
     protected MongoDatabase database;
     private String userName;
-    private String lang = "en_game";
+    private String lang;
 
     /**
      * Constructor of User
      * Start a connexion with the database and set an artificial username
      */
-    public User() {
+    public User(String lang) {
         MongoClientURI uri = new MongoClientURI(
                 "mongodb://udUser:EFBDrRdeE8QAG1lU@cluster0-shard-00-00.wcngd.mongodb.net:27017,cluster0-shard-00-01.wcngd.mongodb.net:27017,cluster0-shard-00-02.wcngd.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-ofie07-shard-0&authSource=admin&retryWrites=true&w=majority");
         MongoClient mongoClient = new MongoClient(uri);
         this.database = mongoClient.getDatabase("UndercookedDB");
         this.userName = "not connected";
+        this.lang = lang;
     }
+
+
 
     /**
      * Method that allow to browse the collection : "Users" in the Database
@@ -83,7 +86,7 @@ public class User {
      * Method that connect a lambda user and change status of actual user
      *
      * @see sample.Main
-     * @see ConnectedUser#ConnectedUser(String, String)
+     * @see ConnectedUser#ConnectedUser(String, String, String)
      *
      * @param userName
      * @param password
@@ -91,7 +94,7 @@ public class User {
      * @return a ConnectedUser that will replace the actual User playing the game
      */
     public ConnectedUser connectUser(String userName, String password) {
-        return new ConnectedUser(userName, password);
+        return new ConnectedUser(userName, password, this.lang);
     }
 
     /**
@@ -191,7 +194,7 @@ public class User {
      * setter of userName attribute
      * used on a ConnectedUser to set his Username
      *
-     * @see ConnectedUser#ConnectedUser(String, String)
+     * @see ConnectedUser#ConnectedUser(String, String, String)
      *
      * @param userName
      */
