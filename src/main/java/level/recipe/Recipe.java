@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Class Recipe is the object composing an client's order
  * Has an ArrayList<Ingredient> listIngredient and a StateRecipe state as arguments
+ * @see Ingredient
  *
  * @author Pierre
  * @since 1.0
