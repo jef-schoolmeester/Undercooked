@@ -34,6 +34,12 @@ public class SettingsAddLanguageController implements Initializable {
     @FXML
     public Button goBack;
 
+    //Initialization static buttons
+    public static Button static_lang;
+    public static Button static_addLang;
+    public static Button static_addRecipe;
+    public static Button static_difficulty;
+
     public static SettingsAddLanguageController self;
 
     /**
@@ -45,6 +51,10 @@ public class SettingsAddLanguageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         self = this;
+        static_lang = languageButton;
+        static_addLang = addLanguageButton;
+        static_addRecipe = addRecipeButton;
+        static_difficulty = difficultyButton;
     }
 
     /**
@@ -58,6 +68,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -71,6 +82,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -84,6 +96,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -98,6 +111,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
+        SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
 }
