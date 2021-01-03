@@ -14,7 +14,7 @@ import level.tools.Oven;
  */
 public class OvenThread extends Thread {
 
-    private Oven oven;
+    private final Oven oven;
     private double timer;
     private boolean isCooking;
     private boolean isRunning;

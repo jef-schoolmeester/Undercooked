@@ -16,7 +16,7 @@ import java.util.Iterator;
  */
 public class Dish {
 
-    private ArrayList<Ingredient> listIngredient;
+    private final ArrayList<Ingredient> listIngredient;
     private StateDish stateDish;
 
     /**

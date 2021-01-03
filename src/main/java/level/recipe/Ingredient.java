@@ -1,10 +1,10 @@
 package level.recipe;
 
 /**
-  Class Ingredient
-  Has a String name, a StateIngredient state as arguments and a String requiredTool
-  A ingredient will have an image depending on it's name and state
-  @see level.tools.IngredientTool
+ * Class Ingredient
+ * Has a String name, a StateIngredient state as arguments and a String requiredTool
+ * A ingredient will have an image depending on it's name and state
+ * @see level.tools.IngredientTool
  * @see level.recipe.StateIngredient
  *
  * @author Pierre
@@ -13,14 +13,11 @@ package level.recipe;
  * @since 2.0
  * @version 2.0
  */
-
-import level.tools.IngredientTool;
-
 public class Ingredient {
 
-	private String name;
+	private final String name;
 	private StateIngredient state;
-	private String requiredTool;
+	private final String requiredTool;
 
 	/**
 	 * Class constructor

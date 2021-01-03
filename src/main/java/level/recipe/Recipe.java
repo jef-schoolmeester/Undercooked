@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Recipe {
 
-	private ArrayList<Ingredient> listIngredient;
+	private final ArrayList<Ingredient> listIngredient;
 
 	/**
 	 * Class constructor

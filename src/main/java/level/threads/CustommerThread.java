@@ -4,9 +4,7 @@ import level.Level;
 import level.customer.CustomerState;
 import level.customer.Order;
 import level.recipe.Recipe;
-import level.tools.Oven;
 
-import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -21,7 +19,7 @@ import java.util.Random;
  */
 public class CustommerThread extends Thread {
 
-    private Level level;
+    private final Level level;
     private double timer;
     private boolean isRunning;
     private double timeBetweenCustomer;

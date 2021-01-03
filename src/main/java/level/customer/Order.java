@@ -14,9 +14,9 @@ import level.recipe.Recipe;
  */
 public class Order {
 
-    private Recipe recipe;
+    private final Recipe recipe;
     private double time;
-    private CustomerState patience;
+    private final CustomerState patience;
 
 
     /**

@@ -1,9 +1,7 @@
 package level.pizzaiolo;
 //package level;
 
-import level.recipe.Ingredient;
 import level.tools.DishTool;
-import level.tools.IngredientContainer;
 import level.tools.IngredientTool;
 import level.tools.Workplan;
 
@@ -23,7 +21,7 @@ import level.tools.Workplan;
 public class Pizzaiolo {
     private int posX;
     private int posY;
-    private Hand hand;
+    private final Hand hand;
 
 
     /**

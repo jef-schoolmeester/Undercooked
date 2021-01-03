@@ -2,8 +2,6 @@ package user;
 
 import org.bson.Document;
 
-import javax.print.Doc;
-
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
@@ -21,7 +19,7 @@ import static com.mongodb.client.model.Filters.eq;
 public class ConnectedUser extends User{
 
     protected Document userDoc;
-    private String password;
+    private final String password;
     protected String access;
 
     /**
@@ -52,7 +50,7 @@ public class ConnectedUser extends User{
 
     /**
      * Define if an User is connected or not
-     *<i>Never Used</i>
+     * <i>Never Used</i>
      *
      * @return a Boolean
      */
@@ -62,6 +60,7 @@ public class ConnectedUser extends User{
 
     /**
      * Getter from attribute userDoc
+     * <i>Never Used</i>
      *
      * @return a BSonDocument from this User
      */

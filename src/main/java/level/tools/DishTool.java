@@ -1,7 +1,6 @@
 package level.tools;
 
 import level.recipe.Dish;
-import level.recipe.Ingredient;
 
 /**
  *  IngredientTool class is the base class for all tools that mainly work with dishes

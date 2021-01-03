@@ -30,12 +30,12 @@ import java.util.Iterator;
  *
  */
 public class Level {
-    private Difficulty difficulty;
-    private ArrayList<ArrayList<Tile>> table;
-    private ArrayList<Recipe> recipes;
-    private Pizzaiolo pizzaiolo;
-    private ArrayList<Order> customers;
-    private CustommerThread custommerThread;
+    private final Difficulty difficulty;
+    private final ArrayList<ArrayList<Tile>> table;
+    private final ArrayList<Recipe> recipes;
+    private final Pizzaiolo pizzaiolo;
+    private final ArrayList<Order> customers;
+    private final CustommerThread custommerThread;
     private double score;
 
     public static int LEVEL_SIZE = 9;

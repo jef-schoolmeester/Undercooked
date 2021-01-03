@@ -12,8 +12,8 @@ package level.tools;
 public class Tile {
 
 
-    private int posX;
-    private int posY;
+    private final int posX;
+    private final int posY;
 
     /**
      * Class constructor

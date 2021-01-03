@@ -30,6 +30,7 @@ public class Admin extends ConnectedUser{
 
     /**
      * Method that add an user with admin access as a document in the collection : "Users" in the Database
+     * <i>Never Used</i>
      *
      * @param userName
      * @param password

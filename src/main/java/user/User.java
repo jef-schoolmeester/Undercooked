@@ -10,9 +10,6 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static com.mongodb.client.model.Filters.and;
-import static com.mongodb.client.model.Filters.eq;
-
 /**
  * Class that define an User through MongoDB database
  *
@@ -48,6 +45,7 @@ public class User {
 
     /**
      * Method that allow to browse the collection : "Users" in the Database
+     * <i>Never Used</i>
      *
      * @return a MongoCursor of the documents in the collection
      */
@@ -98,6 +96,7 @@ public class User {
     }
 
     /**
+     * <i>Never Used</i>
      *
      * @return
      *
@@ -108,9 +107,9 @@ public class User {
         a = a.replaceAll("\\[","");
         a = a.replaceAll("\\]","");
 
-        String phrase[] = a.split(" ,");
-        for(int i=0;i< phrase.length;i++){
-            System.out.println(phrase[i]);
+        String[] phrase = a.split(" ,");
+        for (String s : phrase) {
+            System.out.println(s);
         }
 
         return phrase;
@@ -119,6 +118,7 @@ public class User {
     /**
      * Query method, takes a collection, and 3 parameters to find an ingredient list
      * When the recipe is found, the method return a string
+     * <i>Never Used</i>
      *
      * @param collec
      * @param name
@@ -155,9 +155,8 @@ public class User {
         MongoCollection<Document> collection = database.getCollection("Recipes");
         ArrayList<String> documentList = new ArrayList<>();
         FindIterable<Document> iterDoc = collection.find();
-        Iterator iterator = iterDoc.iterator();
-        while (iterator.hasNext()) {
-            mongoRecipeToList(iterator.next().toString());
+        for (Document document : iterDoc) {
+            mongoRecipeToList(document.toString());
         }
 
         /*MongoCollection<Document> collection = database.getCollection("Recipes");

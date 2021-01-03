@@ -2,7 +2,6 @@ package level.tools;
 
 import level.recipe.Dish;
 import level.recipe.StateDish;
-import level.recipe.StateIngredient;
 import level.threads.OvenThread;
 
 /**
@@ -19,7 +18,7 @@ import level.threads.OvenThread;
  */
 public class Oven extends DishTool {
 
-    private OvenThread ovenThread;
+    private final OvenThread ovenThread;
 
     /**
      * Class constructor

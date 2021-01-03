@@ -1,7 +1,6 @@
 package level.tools;
 
 import level.recipe.Dish;
-import level.recipe.Ingredient;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class Delivery extends DishTool{
 
 
-    private ArrayList<Dish> preparedDishes;
+    private final ArrayList<Dish> preparedDishes;
 
     /**
      * Class constructor
