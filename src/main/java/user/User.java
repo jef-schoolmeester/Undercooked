@@ -20,7 +20,10 @@ import static com.mongodb.client.model.Filters.eq;
  * @since 1.0
  * @author Pierre
  * @since 2.0
- * @version 2.0
+ * @author Yohann
+ * @since 2.1
+ *
+ * @version 2.1
  */
 public class User {
 
@@ -70,11 +73,13 @@ public class User {
     /**
      * Method that connect a lambda user and change status of actual user
      *
+     * @see sample.Main
+     * @see ConnectedUser#ConnectedUser(String, String)
+     *
      * @param userName
      * @param password
+     *
      * @return a ConnectedUser that will replace the actual User playing the game
-     * @see sample.Main
-     * @see ConnectedUser#ConnectedUser(String, String) 
      */
     public ConnectedUser connectUser(String userName, String password) {
         return new ConnectedUser(userName, password);
@@ -83,6 +88,8 @@ public class User {
     /**
      *
      * @return
+     *
+     * @author Yohann
      */
     public static String[] triIngredients(String a){
         a = a.replaceAll("\"","");
@@ -106,6 +113,8 @@ public class User {
      * @param item1
      * @param item2
      * @return
+     *
+     * @author Yohann
      */
     public String query(String collec, String name, String item1, String item2) {
         DBCollection collection = (DBCollection) database.getCollection(collec);
@@ -122,10 +131,13 @@ public class User {
         return "null";
     }
 
-    //Test d'une méthode plus ciblé vers Recipe
-
     /**
+     * Test d'une méthode plus ciblé vers Recipe
      *
+     * @deprecated until improvement
+     * @see User#query(String, String, String, String)
+     *
+     * @author Jef
      */
     public void findRecipes() {
         MongoCollection<Document> collection = database.getCollection("Recipes");
@@ -145,8 +157,11 @@ public class User {
     }
 
     /**
+     * @see User#findRecipes()
      *
      * @param mongoObject
+     *
+     * @author Jef
      */
     public void mongoRecipeToList(String mongoObject) {
         mongoObject = mongoObject.substring(mongoObject.indexOf("name"));
@@ -155,14 +170,19 @@ public class User {
     }
 
     /**
+     * getter from userName attribute
      *
-     * @return
+     * @return a UserName as a String from this User
      */
     public String getUserName() {
         return this.userName;
     }
 
     /**
+     * setter of userName attribute
+     * used on a ConnectedUser to set his Username
+     *
+     * @see ConnectedUser#ConnectedUser(String, String)
      *
      * @param userName
      */
@@ -171,8 +191,10 @@ public class User {
     }
 
     /**
+     * getter from access attribute
+     * This one is artificial, set as "user" for all lambda users
      *
-     * @return
+     * @return an Access as a String from this User
      */
     public String getAccess() {
         return "user";
