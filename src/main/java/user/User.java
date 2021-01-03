@@ -9,6 +9,7 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
 
 /**
  * Class that define an User through MongoDB database
@@ -39,6 +40,10 @@ public class User {
         this.database = mongoClient.getDatabase("UndercookedDB");
         this.userName = "not connected";
         this.lang = lang;
+
+        //Hide logs from MongoDB
+        java.util.logging.Logger mongoLogger = java.util.logging.Logger.getLogger("org.mongodb.driver");
+        mongoLogger.setLevel(Level.SEVERE);
     }
 
 
