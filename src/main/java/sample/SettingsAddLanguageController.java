@@ -51,7 +51,7 @@ public class SettingsAddLanguageController implements Initializable {
             case "fr_game" -> {
                 addLanguageButton.setText("Ajouter langue");
                 addRecipeButton.setText("Ajouter recette");
-                difficultyButton.setText("Difficulté");
+                difficultyButton.setText("Difficulte");
                 languageButton.setText("Langue");
             }
             default -> {
