@@ -4,12 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import level.Level;
 import user.User;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Main class to launch the game
@@ -38,6 +41,8 @@ public class Main extends Application {
         this.primaryStage.setTitle("Undercooked");
         this.primaryStage.setScene(new Scene(root, 1100, 800));
         this.primaryStage.show();
+
+        music();
     }
 
     /**
@@ -46,5 +51,13 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    MediaPlayer mediaPlayer;
+    public void music() {
+        String s = "src/main/resources/music.mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.play();
     }
 }
