@@ -53,12 +53,12 @@ public class CustommerThread extends Thread {
                     if (timer%this.timeBetweenCustomer == 0) {
                         this.addCustomer();
                         this.timer = 0;
-                        System.out.println(timer + " " + this.timeBetweenCustomer);
+                        //System.out.println(timer + " " + this.timeBetweenCustomer);
                     }
                 }
                 if (level.getCustommers().size() == 0) {
                     this.addCustomer();
-                    System.out.println(timer + " " + this.timeBetweenCustomer);
+                    //System.out.println(timer + " " + this.timeBetweenCustomer);
                 }
                 for (Order order: level.getCustommers()) {
                     order.setTime(order.getTime() - 0.025);
