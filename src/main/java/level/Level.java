@@ -118,7 +118,7 @@ public class Level {
         Iterator<String> toolsIterator = tools.iterator();
         int counter = 5;
         while (toolsIterator.hasNext() && counter <= 7) {
-            System.out.println(counter);
+            //System.out.println(counter);
             switch (toolsIterator.next()) {
                 case "grater" -> table.get(counter).set(0, new Grater(counter, 0));
                 case "knife" -> table.get(counter).set(0, new Knife(counter, 0));
