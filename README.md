@@ -11,9 +11,9 @@ javafx.controls,javafx.fxml,javafx.media
 --add-exports
 javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED
 
+Pour que le projet fonctionne correctement, veuillez utiliser javaFx version 15 et java version 15 ou modifier les versions dans le pom.xml
 
 Problèmes connus :
-
 Si l’utilisateur n’a pas accès à internet et qu’il essaie de se connecter, l’application va planter.
 
 Une exception “ConcurrentModificationException” est parfois levée en partie mais n’est pas problématique au fonctionnement de l’application.
