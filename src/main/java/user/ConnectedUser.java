@@ -12,8 +12,10 @@ import static com.mongodb.client.model.Filters.eq;
  *
  * @author Jef
  * @since 1.0
+ *
  * @author Pierre
  * @since 2.0
+ *
  * @version 2.0
  */
 public class ConnectedUser extends User{
@@ -42,6 +44,7 @@ public class ConnectedUser extends User{
     /**
      * Create an User Document from a Java User
      * <i>Never Used</i>
+     *
      * @return a Document created with UserConnected attributes
      */
     public Document toDocument(){

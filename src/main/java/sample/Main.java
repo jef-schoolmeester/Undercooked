@@ -54,6 +54,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Method that allow to launch the game Music, and looping it
+     */
     MediaPlayer mediaPlayer;
     public void music() {
         String s = "src/main/resources/music.mp3";

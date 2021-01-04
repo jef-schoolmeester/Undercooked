@@ -46,7 +46,19 @@ public class SettingsAddLanguageController implements Initializable {
         checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
     }
 
+    /**
+     * Same as LoginMenuController.initialize()
+     * @see LoginMenuController#initialize(URL, ResourceBundle)
+     *
+     * @param addLanguageButton
+     * @param addRecipeButton
+     * @param difficultyButton
+     * @param languageButton
+     *
+     * @author Yohann
+     */
     static void checkLanguage(Button addLanguageButton, Button addRecipeButton, Button difficultyButton, Button languageButton) {
+        // An if statement should be preferable
         switch (Main.user.getLang()) {
             case "fr_game" -> {
                 addLanguageButton.setText("Ajouter langue");

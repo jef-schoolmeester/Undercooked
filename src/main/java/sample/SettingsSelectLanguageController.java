@@ -17,7 +17,12 @@ import java.util.ResourceBundle;
  * Controller of the view settingsSelectLanguage.fxml
  *
  * @author Pierre
- * @version 1.0
+ * @since 1.0
+ *
+ * @author Yohann
+ * @since 1.1
+ *
+ * @version 1.1
  */
 public class SettingsSelectLanguageController implements Initializable {
 
@@ -114,6 +119,14 @@ public class SettingsSelectLanguageController implements Initializable {
         //checkCurrentLang();
     }
 
+    /**
+     * Allow to set the translation to french
+     *
+     * @param mouseEvent
+     * @throws IOException
+     *
+     * @author Yohann
+     */
     public void french(MouseEvent mouseEvent) throws IOException {
         Main.user.setLang("fr_game");
         this.addLanguageButton.setText("Ajouter langue");
@@ -122,6 +135,14 @@ public class SettingsSelectLanguageController implements Initializable {
         this.languageButton.setText("Langue");
     }
 
+    /**
+     * Allow to set the translation to english
+     *
+     * @param mouseEvent
+     * @throws IOException
+     *
+     * @author Yohann
+     */
     public void english(MouseEvent mouseEvent) throws IOException {
         Main.user.setLang("en_game");
         this.addLanguageButton.setText("Add Language");

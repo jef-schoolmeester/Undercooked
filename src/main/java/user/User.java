@@ -16,8 +16,10 @@ import java.util.logging.Level;
  *
  * @author Jef
  * @since 1.0
+ *
  * @author Pierre
  * @since 2.0
+ *
  * @author Yohann
  * @since 2.1
  *

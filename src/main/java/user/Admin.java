@@ -8,8 +8,10 @@ import org.bson.Document;
  *
  * @author Jef
  * @since 1.0
+ *
  * @author Pierre
  * @since 2.0
+ *
  * @version 2.0
  */
 public class Admin extends ConnectedUser{

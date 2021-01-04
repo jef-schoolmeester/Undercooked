@@ -44,9 +44,15 @@ public class LoginMenuController implements Initializable {
     private boolean logIn;
 
 
-
+    /**
+     * Method that is used at the launch of this controller
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //An if statement should be preferable
         switch (Main.user.getLang()) {
             case "fr_game" -> {
                 this.loginSignIn.setText("SE CONNECTER");

@@ -51,6 +51,13 @@ public class levelSelectController {
         //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    /**
+     * Initialize recipes in a level, according to difficulty.
+     * At least only a margarita will be available
+     * Also change username color if the current user have an Admin access
+     *
+     * @see javafx.fxml.Initializable
+     */
     public void initialize() {
 
         Ingredient tomatosauce = new Ingredient("tomatoSauce", "none");
@@ -136,6 +143,13 @@ public class levelSelectController {
         }
     }
 
+
+    /**
+     *
+     * @param difficulty
+     * @param recipes
+     * @throws Exception
+     */
     private void levelClicked(Difficulty difficulty, ArrayList<Recipe> recipes) throws Exception {
         Main.level = new Level(difficulty, recipes);
         URL url = new File("src/main/java/sample/level/level.fxml").toURI().toURL();
@@ -143,6 +157,14 @@ public class levelSelectController {
         goBackButton.getScene().setRoot(root);
     }
 
+    /**
+     * Add a level button depending on difficulty
+     *
+     * @param difficulty
+     * @param recipes
+     * @param column
+     * @param row
+     */
     private void addLevel(Difficulty difficulty, ArrayList<Recipe> recipes, int column, int row) {
         Button levelButton = new Button(difficulty.toString());
         levelButton.setOnMouseClicked(e -> {
