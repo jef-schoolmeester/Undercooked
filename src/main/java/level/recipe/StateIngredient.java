@@ -1,8 +1,7 @@
 package level.recipe;
 
-/*
- * Enum State
- * Has 3 state for Class Ingredient
+/**
+ * Enum that defines the state of an ingredient
  * 
  * @author Pierre Abeille
  */

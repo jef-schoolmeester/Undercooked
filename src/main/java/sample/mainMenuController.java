@@ -2,17 +2,15 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import user.ConnectedUser;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 
 /**
  * Controller of the view mainMenu.fxml
@@ -25,13 +23,14 @@ import java.net.URL;
 public class mainMenuController {
 
     @FXML
-    public Button playButton;
+    private Button playButton;
     @FXML
-    public Button settingsButton;
+    private Button settingsButton;
     @FXML
-    public Button logInButton;
+    private Button logInButton;
     @FXML
-    public Label usernameLabel;
+    private Label usernameLabel;
+
 
     /**
      * Allow to change to level select menu
@@ -46,6 +45,7 @@ public class mainMenuController {
         URL url = new File("src/main/java/sample/levelSelect.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         playButton.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -61,6 +61,7 @@ public class mainMenuController {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         settingsButton.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -76,6 +77,7 @@ public class mainMenuController {
         URL url = new File("src/main/java/sample/LoginMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         logInButton.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -85,6 +87,22 @@ public class mainMenuController {
      */
     @FXML
     public void initialize(){
+        switch (Main.user.getLang()) {
+            case "fr_game" -> {
+                playButton.setText("JOUER");
+                logInButton.setText("CONNEXION");
+                settingsButton.setText("PARAMETRES");
+                usernameLabel.setText("Non connecte");
+            }
+            default -> {
+                playButton.setText("PLAY");
+                logInButton.setText("LOG IN");
+                settingsButton.setText("SETTINGS");
+                usernameLabel.setText("Not connected");
+            }
+
+        }
+
         usernameLabel.setText(Main.user.getUserName());
         if (Main.user.getAccess().equals("admin")){
             usernameLabel.setStyle("-fx-text-fill: red;");

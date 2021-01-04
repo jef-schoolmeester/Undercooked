@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import user.ConnectedUser;
 
 import java.io.File;
@@ -24,14 +25,6 @@ import java.util.ResourceBundle;
  */
 public class LoginMenuController implements Initializable {
 
-    /**
-     * @see Initializable
-     *
-     * @param url
-     * @param resourceBundle
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
     public Button loginSignIn;
@@ -40,9 +33,42 @@ public class LoginMenuController implements Initializable {
     @FXML
     public Button goBack;
     @FXML
-    public TextField userText;
+    private TextField userText;
     @FXML
-    public PasswordField passwordText;
+    private PasswordField passwordText;
+    @FXML
+    private Text password;
+    @FXML
+    private Text username;
+
+    private boolean logIn;
+
+
+    /**
+     * Method that is used at the launch of this controller
+     *
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //An if statement should be preferable
+        switch (Main.user.getLang()) {
+            case "fr_game" -> {
+                this.loginSignIn.setText("SE CONNECTER");
+                this.changeLoginSignInButton.setText("Pas de compte ? S'inscrire");
+                this.username.setText("Nom d'utilisateur");
+                this.password.setText("Mot de passe");
+            }
+            default -> {
+                this.loginSignIn.setText("LOG IN");
+                this.changeLoginSignInButton.setText("No account ? Sign in");
+                this.username.setText("Username");
+                this.password.setText("Password");
+            }
+        }
+        this.logIn = true;
+    }
 
     /**
      * Allow to change view between log in and sign in
@@ -54,14 +80,24 @@ public class LoginMenuController implements Initializable {
      */
     @FXML
     public void changeLoginSignIn(MouseEvent mouseEvent) {
-        if (changeLoginSignInButton.getText().equals("No account ? Sign in")) {
-            loginSignIn.setText("SIGN IN");
-            changeLoginSignInButton.setText("Already signed in ? Log in");
-            System.out.println("yes");
+        if (this.logIn) {
+            if(Main.user.getLang()=="en_game"){
+                loginSignIn.setText("SIGN IN");
+                changeLoginSignInButton.setText("Already signed in ? Log in");
+            }else if(Main.user.getLang()=="fr_game"){
+                loginSignIn.setText("S'INSCRIRE");
+                changeLoginSignInButton.setText("Déjà  inscrit ? Se connecter");
+            }
+            this.logIn = false;
         } else {
-            loginSignIn.setText("LOG IN");
-            changeLoginSignInButton.setText("No account ? Sign in");
-            System.out.println("NO");
+            if(Main.user.getLang()=="en_game"){
+                loginSignIn.setText("LOG IN");
+                changeLoginSignInButton.setText("No account ? Sign in");
+            }else if(Main.user.getLang()=="fr_game"){
+                loginSignIn.setText("SE CONNECTER");
+                changeLoginSignInButton.setText("Pas de compte ? S'inscrire");
+            }
+            this.logIn = true;
         }
     }
 
@@ -78,17 +114,21 @@ public class LoginMenuController implements Initializable {
      * @version 2.0
      */
     @FXML
-    public void login(MouseEvent mouseEvent) {
-        if(loginSignIn.getText().equals("SIGN IN")){
+    public void login(MouseEvent mouseEvent) throws IOException {
+        if(!logIn){
             //créer compte
             Main.user.addUser(userText.getText(), passwordText.getText());
             ConnectedUser newUser = Main.user.connectUser(userText.getText(), passwordText.getText());
             Main.user = newUser;
-        }
-        else if(loginSignIn.getText().equals("LOG IN")){
+            URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            goBack.getScene().setRoot(root);
+        } else {
             //connexion
             Main.user = Main.user.connectUser(userText.getText(), passwordText.getText());
-            System.out.println(Main.user);
+            URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            goBack.getScene().setRoot(root);
         }
     }
 
@@ -106,5 +146,6 @@ public class LoginMenuController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 }

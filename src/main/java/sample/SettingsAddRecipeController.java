@@ -34,7 +34,6 @@ public class SettingsAddRecipeController implements Initializable {
     @FXML
     public Button goBack;
 
-    public static SettingsAddRecipeController self;
 
     /**
      * @see Initializable
@@ -44,7 +43,7 @@ public class SettingsAddRecipeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        self = this;
+        SettingsAddLanguageController.checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
     }
 
     /**
@@ -58,6 +57,7 @@ public class SettingsAddRecipeController implements Initializable {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -71,6 +71,7 @@ public class SettingsAddRecipeController implements Initializable {
         URL url = new File("src/main/java/sample/settingsAddLanguage.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -84,6 +85,7 @@ public class SettingsAddRecipeController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -97,5 +99,6 @@ public class SettingsAddRecipeController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 }

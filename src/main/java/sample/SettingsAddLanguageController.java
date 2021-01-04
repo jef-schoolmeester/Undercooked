@@ -34,7 +34,6 @@ public class SettingsAddLanguageController implements Initializable {
     @FXML
     public Button goBack;
 
-    public static SettingsAddLanguageController self;
 
     /**
      * @see Initializable
@@ -44,7 +43,36 @@ public class SettingsAddLanguageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        self = this;
+        checkLanguage(this.addLanguageButton, this.addRecipeButton, this.difficultyButton, this.languageButton);
+    }
+
+    /**
+     * Same as LoginMenuController.initialize()
+     * @see LoginMenuController#initialize(URL, ResourceBundle)
+     *
+     * @param addLanguageButton
+     * @param addRecipeButton
+     * @param difficultyButton
+     * @param languageButton
+     *
+     * @author Yohann
+     */
+    static void checkLanguage(Button addLanguageButton, Button addRecipeButton, Button difficultyButton, Button languageButton) {
+        // An if statement should be preferable
+        switch (Main.user.getLang()) {
+            case "fr_game" -> {
+                addLanguageButton.setText("Ajouter langue");
+                addRecipeButton.setText("Ajouter recette");
+                difficultyButton.setText("Difficulte");
+                languageButton.setText("Langue");
+            }
+            default -> {
+                addLanguageButton.setText("Add Language");
+                addRecipeButton.setText("Add recipe");
+                difficultyButton.setText("Difficulty");
+                languageButton.setText("Language");
+            }
+        }
     }
 
     /**
@@ -58,6 +86,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsSelectLanguage.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -71,6 +100,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsAddRecipe.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -84,6 +114,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/settingsDifficulty.fxml").toURI().toURL();
         AnchorPane pane = FXMLLoader.load(url);
         rootPane.getChildren().setAll(pane);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
     /**
@@ -98,6 +129,7 @@ public class SettingsAddLanguageController implements Initializable {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBack.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
 }

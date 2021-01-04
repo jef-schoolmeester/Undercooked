@@ -1,30 +1,61 @@
 package level.pizzaiolo;
 //package level;
 
-import level.recipe.Ingredient;
 import level.tools.DishTool;
-import level.tools.IngredientContainer;
 import level.tools.IngredientTool;
 import level.tools.Workplan;
 
+/**
+ * Pizzaiolo is the class that interacts with all the different tools in a level.
+ * This class has an inventory represented by the class Hand and a 2 dimensional position.
+ * @see Hand
+ * @see sample.level.LevelController
+ * @see level.Level
+ *
+ * @author Pierre
+ * @since 1.0
+ * @author Jef
+ * @since 2.0
+ * @version 2.0
+ */
 public class Pizzaiolo {
     private int posX;
     private int posY;
-    private Hand hand;
+    private final Hand hand;
 
 
+    /**
+     * Class constructor
+     * Generate a pizzaiolo with a empty hand at the position 0,0 of the game grid
+     * @since 1.0
+     */
     public Pizzaiolo() {
         this.posX = 0;
         this.posY = 0;
         this.hand = new Hand();
     }
 
+    /**
+     * Class constructor
+     * Generate a pizzaiolo with a empty hand at a specified position
+     * @param posX the starting X axis position
+     * @param posY the starting Y axis position
+     * @since 1.0
+     */
     public Pizzaiolo(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
         this.hand = new Hand();
     }
 
+    /**
+     * Use a ingredient tool
+     * @param ingredientTool the tool used
+     * @see IngredientTool
+     * @return  <code>true</code> if the operation was successful
+     *          <code>false</code> otherwise
+     * @since 2.0
+     */
     public boolean useIngredientTool(IngredientTool ingredientTool){
         if (ingredientTool.isUsable(this.posX, this.posY)) {
             if (!this.hand.isDish()) {
@@ -50,6 +81,13 @@ public class Pizzaiolo {
         }
     }
 
+    /**
+     * Use a DishTool
+     * @param dishTool the tool used
+     * @see DishTool
+     * @return <code>true</code> if the operation was successful
+     *         <code>false</code> otherwise
+     */
     public boolean useDishTool(DishTool dishTool) {
         if (dishTool.isUsable(this.posX, this.posY)) {
             if (dishTool.toString().equals("workplan") && this.hand.isIngredient() ) {
@@ -80,44 +118,36 @@ public class Pizzaiolo {
         }
     }
 
-    /*public boolean useIngredientContainer(IngredientContainer ingredientContainer){
-        if (this.hand.isHandFull() && ingredientContainer.isUsable(this.posX, this.posY)) {
-            ingredientContainer.addIngredient((this.hand.getIngredient()));
-            return ingredientContainer.use();
-        } else {
-            return false;
-        }
-    }
-
-    public void takeIngredientFromIngredientTool(IngredientTool ingredientTool){
-        Ingredient newIngredient;
-        if(ingredientTool.isUsable(this.posX, this.posY) && !this.hand.isHandFull()){
-           newIngredient = ingredientTool.takeIngredient();
-           this.hand.setIngredient(newIngredient);
-        }
-    }
-
-    public void takeIngredientFromIngredientContainer(IngredientContainer ingredientContainer){
-        Ingredient newIngredient;
-        if(ingredientContainer.isUsable(this.posX, this.posY) && !this.hand.isHandFull()){
-            newIngredient = ingredientContainer.takeIngredient();
-            this.hand.setIngredient(newIngredient);
-        }
-    }*/
-
+    /**
+     *
+     * @return posX the X axis position of the pizzaiolo
+     */
     public int getPosX() {
         return posX;
     }
 
+    /**
+     *
+     * @return posX the Y axis position of the pizzaiolo
+     */
     public int getPosY() {
         return posY;
     }
 
+    /**
+     * Sets the pizzaiolo's position
+     * @param x the X axis position
+     * @param y the Y axis position
+     */
     public void setPos(int x, int y) {
         this.posX = x;
         this.posY = y;
     }
 
+    /**
+     *
+     * @return Hand
+     */
     public Hand getHand() {
         return this.hand;
     }

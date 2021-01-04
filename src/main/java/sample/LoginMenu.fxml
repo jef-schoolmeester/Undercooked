@@ -9,15 +9,13 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #737373;" stylesheets="@mainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenuController">
-   <children>
       <Pane prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #737373;">
-         <children>
-            <Text fill="#ffd84d" layoutX="285.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" textAlignment="CENTER" wrappingWidth="530.0">
+            <Text fx:id="username" fill="#ffd84d" layoutX="285.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" textAlignment="CENTER" wrappingWidth="530.0">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
             </Text>
-            <Text fill="#ffd84d" layoutX="284.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" textAlignment="CENTER" wrappingWidth="530.0">
+            <Text fx:id="password" fill="#ffd84d" layoutX="284.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" textAlignment="CENTER" wrappingWidth="530.0">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
@@ -39,7 +37,5 @@
             </Button>
             <TextField fx:id="userText" layoutX="284.0" layoutY="179.0" prefHeight="59.0" prefWidth="530.0" />
             <PasswordField fx:id="passwordText" layoutX="284.0" layoutY="400.0" prefHeight="59.0" prefWidth="530.0" />
-         </children>
       </Pane>
-   </children>
 </AnchorPane>

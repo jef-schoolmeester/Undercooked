@@ -2,13 +2,28 @@ package level.threads;
 
 import level.tools.Oven;
 
+/**
+ * OvenThread is the class that manages the Oven class, extends Thread class.
+ * This class has a Oven, two booleans and one timer
+ * @see Thread
+ * @see Oven
+ *
+ * @author Jef
+ * @since 1.0
+ * @version 1.0
+ */
 public class OvenThread extends Thread {
 
-    private Oven oven;
+    private final Oven oven;
     private double timer;
     private boolean isCooking;
     private boolean isRunning;
 
+    /**
+     * Class constructor
+     * @param oven The oven to be managed
+     * @since 1.0
+     */
     public OvenThread(Oven oven) {
         super();
         this.oven = oven;
@@ -17,6 +32,9 @@ public class OvenThread extends Thread {
         this.isRunning = true;
     }
 
+    /**
+     * If isCooking parameter is true and the thread isRunning, calls cook from oven every 5 seconds
+     */
     public void run() {
         while (isRunning) {
             try {
@@ -36,10 +54,18 @@ public class OvenThread extends Thread {
         }
     }
 
+    /**
+     * Changes isCooking parameter to true or false
+     * @since 1.0
+     */
     public void toggle() {
         this.isCooking = !this.isCooking;
     }
 
+    /**
+     * stops the thread
+     * @since 1.0
+     */
     public void stopRunning() {
         this.isRunning = false;
     }

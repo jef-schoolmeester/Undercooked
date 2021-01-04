@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import level.Difficulty;
@@ -31,6 +32,9 @@ public class levelSelectController {
     @FXML
     private GridPane levelGrid;
 
+    @FXML
+    public Label usernameLabel;
+
     /**
      * Allow to go back at the main menu.
      * Used on other controllers
@@ -44,8 +48,16 @@ public class levelSelectController {
         URL url = new File("src/main/java/sample/mainMenu.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         goBackButton.getScene().setRoot(root);
+        //SettingsSelectLanguageController.self.checkCurrentLang();
     }
 
+    /**
+     * Initialize recipes in a level, according to difficulty.
+     * At least only a margarita will be available
+     * Also change username color if the current user have an Admin access
+     *
+     * @see javafx.fxml.Initializable
+     */
     public void initialize() {
 
         Ingredient tomatosauce = new Ingredient("tomatoSauce", "none");
@@ -125,8 +137,19 @@ public class levelSelectController {
             }
 
         }
+        usernameLabel.setText(Main.user.getUserName());
+        if (Main.user.getAccess().equals("admin")){
+            usernameLabel.setStyle("-fx-text-fill: red;");
+        }
     }
 
+
+    /**
+     *
+     * @param difficulty
+     * @param recipes
+     * @throws Exception
+     */
     private void levelClicked(Difficulty difficulty, ArrayList<Recipe> recipes) throws Exception {
         Main.level = new Level(difficulty, recipes);
         URL url = new File("src/main/java/sample/level/level.fxml").toURI().toURL();
@@ -134,6 +157,14 @@ public class levelSelectController {
         goBackButton.getScene().setRoot(root);
     }
 
+    /**
+     * Add a level button depending on difficulty
+     *
+     * @param difficulty
+     * @param recipes
+     * @param column
+     * @param row
+     */
     private void addLevel(Difficulty difficulty, ArrayList<Recipe> recipes, int column, int row) {
         Button levelButton = new Button(difficulty.toString());
         levelButton.setOnMouseClicked(e -> {
