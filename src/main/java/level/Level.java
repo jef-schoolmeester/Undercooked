@@ -68,7 +68,7 @@ public class Level {
             for (Ingredient ingredient : (recipeIterator.next()).getListIngredient()) {
                 if (!ingredients.contains(ingredient.getRawIngredient())) {
                     ingredients.add(ingredient.getRawIngredient());
-                    System.out.println(ingredient.getRawIngredient().toString());
+                    //System.out.println(ingredient.getRawIngredient().toString());
                     if (!tools.contains(ingredient.getRequiredTool()) && !ingredient.getRequiredTool().equals("none")) {
                         tools.add(ingredient.getRequiredTool());
                     }
